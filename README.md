@@ -1,2 +1,2 @@
-# SeeFit_BackEnd
-내 손안의 안경원 SeeFit의 BackEnd Repository 입니다.
+# CareSpoon BackEnd
+나만의 건강수저 CareSpoon의 BackEnd Repository 입니다.
