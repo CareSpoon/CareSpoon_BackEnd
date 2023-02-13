@@ -1,13 +1,13 @@
-package com.example.care.spoon;
+package com.carespoon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CareSpoonApplication {
+public class CarespoonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CareSpoonApplication.class, args);
+		SpringApplication.run(CarespoonApplication.class, args);
 	}
 
 }
