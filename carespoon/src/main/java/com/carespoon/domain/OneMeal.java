@@ -1,4 +1,4 @@
-package com.carespoon.domain.oneMeal;
+package com.carespoon.domain;
 
 import jakarta.persistence.*;
 import lombok.Builder;

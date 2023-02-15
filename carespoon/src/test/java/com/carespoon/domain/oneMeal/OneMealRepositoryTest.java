@@ -1,5 +1,7 @@
 package com.carespoon.domain.oneMeal;
 
+import com.carespoon.Repository.OneMealRepository;
+import com.carespoon.domain.OneMeal;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
