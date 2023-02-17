@@ -1,9 +1,11 @@
 package com.carespoon.dto;
 
 import com.carespoon.domain.OneMeal;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class OneMealResponseDto {
 
     private Long id;
