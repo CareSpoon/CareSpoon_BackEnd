@@ -1,12 +1,10 @@
 package com.carespoon.controller;
 
+import com.carespoon.dto.OneMealResponseDto;
 import com.carespoon.dto.OneMealSaveRequestDto;
 import com.carespoon.service.OneMealService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,5 +14,11 @@ public class OneMealController {
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto){
         return oneMealService.save(requestDto);
+    }
+
+    @GetMapping("/onemeal/{id}")
+    public OneMealResponseDto findById(@PathVariable Long id)
+    {
+        return oneMealService.findById(id);
     }
 }
