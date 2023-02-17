@@ -27,6 +27,7 @@ public class OneMealRepositoryTest {
 
     @Test
     public void 한끼저장_불러오기() {
+        //given
         LocalDateTime mealTime = LocalDateTime.now();
         int kcal = 170;
         int carbon = 13;

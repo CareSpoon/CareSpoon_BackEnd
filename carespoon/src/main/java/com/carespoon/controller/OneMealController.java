@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/onemeal")
 public class OneMealController {
     private final OneMealService oneMealService;
 
-    @PostMapping("/{meal_id}")
+    @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto){
         return oneMealService.save(requestDto);
     }
