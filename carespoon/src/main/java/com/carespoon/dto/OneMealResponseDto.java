@@ -3,6 +3,7 @@ package com.carespoon.dto;
 import com.carespoon.domain.OneMeal;
 import lombok.Getter;
 
+import java.net.URL;
 import java.time.LocalDateTime;
 
 @Getter

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.net.URL;
 import java.time.LocalDateTime;
 
 @Getter
@@ -33,6 +34,7 @@ public class OneMeal {
     @Column
     private int meal_Protein;
 
+
     @Builder
     public OneMeal(LocalDateTime mealTime, int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
         this.mealTime = mealTime;
@@ -41,5 +43,7 @@ public class OneMeal {
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
     }
+
+
 
 }

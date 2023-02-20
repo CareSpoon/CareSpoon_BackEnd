@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.net.URL;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,6 +17,7 @@ public class OneMealSaveRequestDto {
     private int meal_Fat;
     private int meal_Protein;
 
+
     @Builder
     public OneMealSaveRequestDto(LocalDateTime mealTime, int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
         this.mealTime = mealTime;
@@ -24,6 +26,8 @@ public class OneMealSaveRequestDto {
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
     }
+
+
 
     public OneMeal toEntity(){
         return OneMeal.builder()

@@ -33,7 +33,6 @@ public class OneMealRepositoryTest {
         int carbon = 13;
         int fat = 20;
         int protein = 10;
-
         oneMealRepository.save(OneMeal.builder()
                 .mealTime(mealTime)
                 .meal_Kcal(kcal)

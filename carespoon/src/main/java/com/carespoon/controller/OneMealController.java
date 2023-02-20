@@ -12,13 +12,13 @@ public class OneMealController {
     private final OneMealService oneMealService;
 
     @PostMapping("/onemeal")
-    public Long save(@RequestBody OneMealSaveRequestDto requestDto){
+    public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
         return oneMealService.save(requestDto);
     }
 
-    @GetMapping("/onemeal/{id}")
-    public OneMealResponseDto findById(@PathVariable Long id)
-    {
+                                                @GetMapping("/onemeal/{id}")
+    public OneMealResponseDto findById(@PathVariable Long id) {
         return oneMealService.findById(id);
     }
+
 }
