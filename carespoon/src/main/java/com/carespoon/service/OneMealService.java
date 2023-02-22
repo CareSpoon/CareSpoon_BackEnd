@@ -16,6 +16,7 @@ public class OneMealService {
     @Transactional
     public long save(OneMealSaveRequestDto requestDto)
     {
+
         return oneMealRepository.save(requestDto.toEntity()).getId();
     }
 
@@ -25,4 +26,5 @@ public class OneMealService {
                 .orElseThrow(()-> new IllegalArgumentException(("해당 식사는 존재하지 않습니다. id =")+ id));
         return new OneMealResponseDto(entity);
     }
+
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.net.URL;
@@ -34,14 +35,17 @@ public class OneMeal {
     @Column
     private int meal_Protein;
 
+    @Column(nullable = false)
+    private Long imageId;
 
     @Builder
-    public OneMeal(LocalDateTime mealTime, int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
+    public OneMeal(LocalDateTime mealTime, int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Long imageId){
         this.mealTime = mealTime;
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
+        this.imageId = imageId;
     }
 
 

@@ -16,6 +16,8 @@ public class OneMealResponseDto {
     private int meal_Fat;
     private int meal_Protein;
 
+    private Long imageId;
+
     public OneMealResponseDto(OneMeal entity){
         this.id = entity.getId();
         this.mealTime = entity.getMealTime();
@@ -23,5 +25,6 @@ public class OneMealResponseDto {
         this.meal_Fat = entity.getMeal_Fat();
         this.meal_Carbon = entity.getMeal_Carbon();
         this.meal_Protein = entity.getMeal_Protein();
+        this.imageId = entity.getImageId();
     }
 }
