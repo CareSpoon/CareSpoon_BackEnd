@@ -33,15 +33,18 @@ public class UserInfo {
     private double metabolicRate;
 
     @Builder
-    public UserInfo(int userId, int age, LocalDate now, int sex, double height, double weight){
+    public UserInfo(int userId, int age, int sex, double height, double weight){
         this.userId = userId;
         this.age = age;
         this.sex = sex;
         this.height = height;
         this.weight = weight;
         if(sex == 0){
-            this.metabolicRate = 66 + (13.8*weight) + 5 * height - 6.8 * age;
+            this.metabolicRate = 88.4 + (13.4*weight) + 4.8* height - 5.68 * age;
                     //66 + (13.8 x 몸무게(kg)) + (5 x 키(cm)) - (6.8 x 나이)
+        }else{
+            this.metabolicRate = 447.6 + (9.25*weight)+ 3.1*height - 4.33*age;
+                    //BMR = 655 + (9.6 x 몸무게(kg)) + (1.8 x 키(cm)) - (4.7 x 나이)
         }
     }
 }
