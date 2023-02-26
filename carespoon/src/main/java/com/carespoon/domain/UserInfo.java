@@ -1,8 +1,6 @@
 package com.carespoon.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class UserInfo {
     @Id
-    private int userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
     @Column
     private int age;
@@ -33,7 +32,7 @@ public class UserInfo {
     private double metabolicRate;
 
     @Builder
-    public UserInfo(int userId, int age, int sex, double height, double weight){
+    public UserInfo(long userId, int age, int sex, double height, double weight){
         this.userId = userId;
         this.age = age;
         this.sex = sex;
@@ -45,6 +44,19 @@ public class UserInfo {
         }else{
             this.metabolicRate = 447.6 + (9.25*weight)+ 3.1*height - 4.33*age;
                     //BMR = 655 + (9.6 x 몸무게(kg)) + (1.8 x 키(cm)) - (4.7 x 나이)
+        }
+    }
+
+    public void update(long userId, int age, int sex, double height, double weight){
+        this.userId = userId;
+        this.age = age;
+        this.sex = sex;
+        this.height = height;
+        this.weight = weight;
+        if(sex == 0){
+            this.metabolicRate = 88.4 + (13.4*weight) + 4.8* height - 5.68 * age;
+        }else{
+            this.metabolicRate = 447.6 + (9.25*weight)+ 3.1*height - 4.33*age;
         }
     }
 }

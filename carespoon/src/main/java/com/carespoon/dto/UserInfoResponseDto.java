@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class UserInfoResponseDto {
-    private int userId;
+    private Long userId;
 
     private double height;
 

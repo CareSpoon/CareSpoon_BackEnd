@@ -1,16 +1,12 @@
 package com.carespoon.dto;
 
-import com.carespoon.domain.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Getter
 @NoArgsConstructor
-public class UserInfoSaveRequestDto {
-
+public class UserInfoUpdateRequestDto {
     private Long userId;
 
     private double height;
@@ -24,7 +20,7 @@ public class UserInfoSaveRequestDto {
     private int sex;
 
     @Builder
-    public UserInfoSaveRequestDto(Long userId, int age, int sex, double height, double weight){
+    public UserInfoUpdateRequestDto(Long userId, int age, int sex, double height, double weight){
         this.userId = userId;
         this.age = age;
         this.sex = sex;
@@ -37,15 +33,5 @@ public class UserInfoSaveRequestDto {
             //woman
             this.metabolicRate = 447.6 + (9.25*weight)+ 3.1*height - 4.33*age;
         }
-    }
-
-    public UserInfo toEntity(){
-        return UserInfo.builder()
-                .userId(userId)
-                .age(age)
-                .sex(sex)
-                .weight(weight)
-                .height(height)
-                .build();
     }
 }

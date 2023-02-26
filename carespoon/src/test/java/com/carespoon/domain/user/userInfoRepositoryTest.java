@@ -3,7 +3,6 @@ package com.carespoon.domain.user;
 
 import com.carespoon.Repository.UserInfoRepository;
 import com.carespoon.domain.UserInfo;
-import jakarta.persistence.Id;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +12,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static java.lang.Long.valueOf;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserInfoRepositoryTest {
+public class userInfoRepositoryTest {
 
     @Autowired
     UserInfoRepository userInfoRepository;
@@ -29,7 +29,7 @@ public class UserInfoRepositoryTest {
 
     @Test
     public void 사용자정보_불러오기(){
-        int userId = 101;
+        long userId = valueOf(1);
         int age = 20;
         int sex = 1;
         double height = 172.2;

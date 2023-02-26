@@ -66,4 +66,5 @@ public class OneMealApiControllerTest {
         assertThat(all.get(0).getMeal_Protein()).isEqualTo(protein);
         assertThat(all.get(0).getMeal_Kcal()).isEqualTo(kcal);
     }
+
 }
