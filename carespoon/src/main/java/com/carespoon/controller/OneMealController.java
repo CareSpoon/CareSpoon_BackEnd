@@ -30,7 +30,7 @@ public class OneMealController {
         return oneMealService.save(requestDto);
     }
 
-    @PostMapping("/imageupload")
+    @PostMapping("onemeal/{id}/imageupload")
     public String imageupload(@RequestParam("image")MultipartFile images, OneMealSaveRequestDto requestDto){
         try {
             String originImageName = images.getOriginalFilename();
