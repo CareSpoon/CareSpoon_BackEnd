@@ -66,4 +66,8 @@ public class OneMealController {
         return oneMealService.findById(id);
     }
 
+    @GetMapping("/onemeal/{id}/{imageId}")
+    public ImageDto findByImageId(@PathVariable Long id){
+        return imageService.getImage(id);
+    }
 }
