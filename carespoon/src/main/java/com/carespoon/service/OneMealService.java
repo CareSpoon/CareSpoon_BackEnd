@@ -14,9 +14,8 @@ public class OneMealService {
     private final OneMealRepository oneMealRepository;
 
     @Transactional
-    public long save(OneMealSaveRequestDto requestDto)
+    public Long save(OneMealSaveRequestDto requestDto)
     {
-
         return oneMealRepository.save(requestDto.toEntity()).getId();
     }
 

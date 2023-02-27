@@ -18,56 +18,51 @@ import java.security.NoSuchAlgorithmException;
 @RequiredArgsConstructor
 @RestController
 public class OneMealController {
-    private OneMealService oneMealService;
-    private ImageService imageService;
+    private final OneMealService oneMealService;
 
-    public OneMealController(OneMealService oneMealService, ImageService imageService){
-        this.oneMealService = oneMealService;
-        this.imageService = imageService;
-    }
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
         return oneMealService.save(requestDto);
     }
 
-    @PostMapping("onemeal/{id}/imageupload")
-    public String imageupload(@RequestParam("image")MultipartFile images, OneMealSaveRequestDto requestDto){
-        try {
-            String originImageName = images.getOriginalFilename();
-            assert originImageName != null;
-            String imageName = new MD5Generator(originImageName).toString();
-
-            String savePath = System.getProperty("user.dir") + "\\images";
-            if(!new File(savePath).exists()){
-                try {
-                    new File(savePath).mkdir();
-                }catch (Exception e){
-                    e.getStackTrace();
-                }
-            }
-            String imagePath = savePath + "\\"+ imageName;
-            images.transferTo(new File(imagePath));
-
-            ImageDto imageDto = new ImageDto();
-            imageDto.setOriginImageName(originImageName);
-            imageDto.setImageName(imageName);
-            imageDto.setImagePath(imagePath);
-
-            Long imageId = imageService.saveImage(imageDto);
-            requestDto.setImageId(imageId);
-            oneMealService.save(requestDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "redirect:/";
-    }
+//    @PostMapping("onemeal/{id}/imageupload")
+//    public String imageupload(@RequestParam("image")MultipartFile images, OneMealSaveRequestDto requestDto){
+//        try {
+//            String originImageName = images.getOriginalFilename();
+//            assert originImageName != null;
+//            String imageName = new MD5Generator(originImageName).toString();
+//
+//            String savePath = System.getProperty("user.dir") + "\\images";
+//            if(!new File(savePath).exists()){
+//                try {
+//                    new File(savePath).mkdir();
+//                }catch (Exception e){
+//                    e.getStackTrace();
+//                }
+//            }
+//            String imagePath = savePath + "\\"+ imageName;
+//            images.transferTo(new File(imagePath));
+//
+//            ImageDto imageDto = new ImageDto();
+//            imageDto.setOriginImageName(originImageName);
+//            imageDto.setImageName(imageName);
+//            imageDto.setImagePath(imagePath);
+//
+//            Long imageId = imageService.saveImage(imageDto);
+//            requestDto.setImageId(imageId);
+//            oneMealService.save(requestDto);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "redirect:/";
+//    }
     @GetMapping("/onemeal/{id}")
     public OneMealResponseDto findById(@PathVariable Long id) {
         return oneMealService.findById(id);
     }
 
-    @GetMapping("/onemeal/{id}/{imageId}")
-    public ImageDto findByImageId(@PathVariable Long id){
-        return imageService.getImage(id);
-    }
+//    @GetMapping("/onemeal/{id}/{imageId}")
+//    public ImageDto findByImageId(@PathVariable Long id){
+//        return imageService.getImage(id);
+//    }
 }

@@ -4,6 +4,7 @@ import com.carespoon.Repository.OneMealRepository;
 import com.carespoon.domain.OneMeal;
 import com.carespoon.dto.OneMealSaveRequestDto;
 import net.bytebuddy.asm.Advice;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
+import static java.lang.Long.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -33,17 +36,19 @@ public class OneMealApiControllerTest {
     @Autowired
     private OneMealRepository oneMealRepository;
 
+    @After
+    public void tearDown() throws Exception{
+        oneMealRepository.deleteAll();
+    }
     @Test
     public void OneMeal_등록된다() throws Exception {
         //given
-        LocalDateTime mealTime = LocalDateTime.now();
         int kcal = 170;
         int carbon = 13;
         int fat = 20;
         int protein = 10;
 
-       OneMealSaveRequestDto requestDto = OneMealSaveRequestDto.builder()
-                .mealTime(mealTime)
+       OneMealSaveRequestDto oneMealSaveRequestDto = OneMealSaveRequestDto.builder()
                 .meal_Kcal(kcal)
                 .meal_Carbon(carbon)
                 .meal_Fat(fat)
@@ -53,7 +58,7 @@ public class OneMealApiControllerTest {
         String url = "http://localhost:" + port + "/onemeal";
 
         //when
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, oneMealSaveRequestDto, Long.class);
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -61,7 +66,6 @@ public class OneMealApiControllerTest {
 
         List<OneMeal> all = oneMealRepository.findAll();
         assertThat(all.get(0).getMeal_Carbon()).isEqualTo(carbon);
-        assertThat(all.get(0).getMealTime()).isEqualTo(mealTime);
         assertThat(all.get(0).getMeal_Fat()).isEqualTo(fat);
         assertThat(all.get(0).getMeal_Protein()).isEqualTo(protein);
         assertThat(all.get(0).getMeal_Kcal()).isEqualTo(kcal);

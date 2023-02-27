@@ -19,9 +19,6 @@ public class OneMeal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @CreatedDate
-    private LocalDateTime mealTime;
 
     @Column
     private int meal_Kcal;
@@ -35,17 +32,12 @@ public class OneMeal {
     @Column
     private int meal_Protein;
 
-    @Column(nullable = false)
-    private Long imageId;
-
     @Builder
-    public OneMeal(LocalDateTime mealTime, int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Long imageId){
-        this.mealTime = mealTime;
+    public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
-        this.imageId = imageId;
     }
 
 

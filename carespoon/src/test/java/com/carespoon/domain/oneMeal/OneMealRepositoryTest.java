@@ -28,13 +28,11 @@ public class OneMealRepositoryTest {
     @Test
     public void 한끼저장_불러오기() {
         //given
-        LocalDateTime mealTime = LocalDateTime.now();
         int kcal = 170;
         int carbon = 13;
         int fat = 20;
         int protein = 10;
         oneMealRepository.save(OneMeal.builder()
-                .mealTime(mealTime)
                 .meal_Kcal(kcal)
                 .meal_Carbon(carbon)
                 .meal_Fat(fat)
@@ -47,7 +45,6 @@ public class OneMealRepositoryTest {
         //then
         OneMeal oneMeal = oneMealList.get(0);
         assertThat(oneMeal.getMeal_Carbon()).isEqualTo(carbon);
-        assertThat(oneMeal.getMealTime()).isEqualTo(mealTime);
         assertThat(oneMeal.getMeal_Fat()).isEqualTo(fat);
         assertThat(oneMeal.getMeal_Protein()).isEqualTo(protein);
         assertThat(oneMeal.getMeal_Kcal()).isEqualTo(kcal);
