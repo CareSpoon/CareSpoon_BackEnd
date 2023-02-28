@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 public class OneMealController {
     private final OneMealService oneMealService;
 
+
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
         return oneMealService.save(requestDto);
