@@ -4,7 +4,7 @@ import com.carespoon.Repository.OneMealRepository;
 import com.carespoon.domain.OneMeal;
 import com.carespoon.dto.OneMealResponseDto;
 import com.carespoon.dto.OneMealSaveRequestDto;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

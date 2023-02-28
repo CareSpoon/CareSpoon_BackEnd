@@ -6,7 +6,7 @@ import com.carespoon.domain.UserInfo;
 import com.carespoon.dto.UserInfoResponseDto;
 import com.carespoon.dto.UserInfoSaveRequestDto;
 import com.carespoon.dto.UserInfoUpdateRequestDto;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

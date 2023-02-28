@@ -3,7 +3,7 @@ package com.carespoon.service;
 import com.carespoon.Repository.ImageRepository;
 import com.carespoon.domain.Image;
 import com.carespoon.dto.ImageDto;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service

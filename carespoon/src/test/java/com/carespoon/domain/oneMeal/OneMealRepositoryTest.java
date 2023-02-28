@@ -2,7 +2,7 @@ package com.carespoon.domain.oneMeal;
 
 import com.carespoon.Repository.OneMealRepository;
 import com.carespoon.domain.OneMeal;
-import jakarta.websocket.OnMessage;
+import javax.websocket.OnMessage;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,5 +66,9 @@ public class OneMealRepositoryTest {
 
         OneMeal oneMeal = oneMealList.get(0);
         System.out.println(">>>>>>> createDate = "+ oneMeal.getCreatedDate());
+    }
+    @Test
+    public void 날짜별_식단_출력(){
+
     }
 }
