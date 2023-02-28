@@ -5,5 +5,5 @@ import com.carespoon.domain.OneMeal;
 import java.util.List;
 
 public interface OneMealRepositoryCustom {
-    List<OneMeal> findOneMealByMeal_time();
+    List<OneMeal> findOneMealByCreatedTime();
 }
