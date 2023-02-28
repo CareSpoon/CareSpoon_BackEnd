@@ -2,6 +2,7 @@ package com.carespoon.domain.oneMeal;
 
 import com.carespoon.Repository.OneMealRepository;
 import com.carespoon.domain.OneMeal;
+import jakarta.websocket.OnMessage;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,5 +49,22 @@ public class OneMealRepositoryTest {
         assertThat(oneMeal.getMeal_Fat()).isEqualTo(fat);
         assertThat(oneMeal.getMeal_Protein()).isEqualTo(protein);
         assertThat(oneMeal.getMeal_Kcal()).isEqualTo(kcal);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록(){
+        LocalDateTime now = LocalDateTime.of(2023,2,28,10,7,35);
+        oneMealRepository.save(
+                OneMeal.builder()
+                        .meal_Fat(40)
+                        .meal_Kcal(120)
+                        .meal_Carbon(50)
+                        .meal_Protein(30)
+                        .build());
+
+        List<OneMeal> oneMealList = oneMealRepository.findAll();
+
+        OneMeal oneMeal = oneMealList.get(0);
+        System.out.println(">>>>>>> createDate = "+ oneMeal.getCreatedDate());
     }
 }

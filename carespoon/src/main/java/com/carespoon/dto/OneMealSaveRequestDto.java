@@ -17,12 +17,14 @@ public class OneMealSaveRequestDto {
     private int meal_Fat;
     private int meal_Protein;
 
+
     @Builder
-    public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein ){
+    public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
+
     }
 
 
