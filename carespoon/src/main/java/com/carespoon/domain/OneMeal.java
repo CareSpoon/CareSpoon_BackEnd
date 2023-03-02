@@ -32,6 +32,8 @@ public class OneMeal extends BaseTimeEntity{
     @Column
     private int meal_Protein;
 
+    @OneToOne(mappedBy = "onemeal", cascade = CascadeType.ALL)
+    private Image mealImage;
     @Builder
     public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
         this.meal_Kcal = meal_Kcal;

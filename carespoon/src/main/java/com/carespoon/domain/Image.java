@@ -1,9 +1,7 @@
 package com.carespoon.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +15,6 @@ public class Image {
     @GeneratedValue
     private Long imageId;
 
-    @Column(nullable = false)
-    private String originImageName;
 
     @Column(nullable = false)
     private String imageName;
@@ -26,10 +22,12 @@ public class Image {
     @Column(nullable = false)
     private String imagePath;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "OneMeal_id")
+    private OneMeal oneMeal;
     @Builder
-    public Image(Long imageId, String originImageName, String imageName, String imagePath){
+    public Image(Long imageId,String imageName, String imagePath){
         this.imageId = imageId;
-        this.originImageName = originImageName;
         this.imageName = imageName;
         this.imagePath = imagePath;
     }

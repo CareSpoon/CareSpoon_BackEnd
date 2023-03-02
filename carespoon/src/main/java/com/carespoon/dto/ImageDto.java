@@ -10,14 +10,12 @@ import lombok.*;
 public class ImageDto {
 
     private Long imageId;
-    private String originImageName;
     private String imageName;
     private String imagePath;
 
     public Image toEntity(){
         Image build = Image.builder()
                 .imageId(imageId)
-                .originImageName(originImageName)
                 .imageName(imageName)
                 .imagePath(imagePath)
                 .build();
@@ -25,9 +23,8 @@ public class ImageDto {
     }
     @Builder
 
-    public ImageDto(Long imageId, String originImageName, String imageName, String imagePath){
+    public ImageDto(Long imageId, String imageName, String imagePath){
         this.imageId = imageId;
-        this.originImageName = originImageName;
         this.imageName = imageName;
         this.imagePath = imagePath;
     }

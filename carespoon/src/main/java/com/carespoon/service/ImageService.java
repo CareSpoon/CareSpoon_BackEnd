@@ -26,7 +26,6 @@ public class ImageService {
 
         ImageDto imageDto = ImageDto.builder()
                 .imageId(id)
-                .originImageName(image.getOriginImageName())
                 .imageName(image.getImageName())
                 .imagePath(image.getImagePath())
                 .build();
