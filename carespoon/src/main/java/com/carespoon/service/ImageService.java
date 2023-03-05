@@ -25,7 +25,6 @@ public class ImageService {
         Image image = imageRepository.findById(id).get();
 
         ImageDto imageDto = ImageDto.builder()
-                .imageId(id)
                 .imageName(image.getImageName())
                 .imagePath(image.getImagePath())
                 .build();

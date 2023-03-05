@@ -6,20 +6,23 @@ import com.carespoon.dto.OneMealResponseDto;
 import com.carespoon.dto.OneMealSaveRequestDto;
 import com.carespoon.service.ImageService;
 import com.carespoon.service.OneMealService;
-import com.carespoon.util.MD5Generator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @RestController
 public class OneMealController {
     private final OneMealService oneMealService;
-
+    private ImageService imageService;
 
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
@@ -27,9 +30,29 @@ public class OneMealController {
         return oneMealService.save(requestDto);
     }
 
+    @PostMapping("/mealimage")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file){
+        try{
+            ImageDto imageDto = ImageDto.from(file);
+            imageService.saveImage(imageDto);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/onemeal/{id}")
     public OneMealResponseDto findById(@PathVariable Long id) {
         return oneMealService.findById(id);
     }
-    
+    @GetMapping("/mealimage/{id}")
+    public ResponseEntity<Resource> getImage(@PathVariable("id") Long imageId) throws IOException {
+        Image image = imageService.getImage(imageId).toEntity();
+        UrlResource resource = new UrlResource(image.getImagePath());
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getImageName() + "\"")
+                .body(resource);
+    }
 }
