@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,13 +18,17 @@ public class OneMealSaveRequestDto {
     private int meal_Fat;
     private int meal_Protein;
 
+    private LocalDate eatDate;
 
+    private LocalDateTime createdDate;
     @Builder
-    public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein){
+    public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein,  LocalDate eatDate, LocalDateTime createdDate){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
+        this.eatDate = eatDate;
+        this.createdDate = createdDate;
 
     }
 
