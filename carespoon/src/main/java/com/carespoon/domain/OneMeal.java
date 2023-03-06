@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor
-public class OneMeal extends BaseTimeEntity{
+public class OneMeal{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
