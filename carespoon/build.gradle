@@ -33,8 +33,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'com.querydsl:querydsl-jpa'
+	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework:spring-core:5.3.15'
 	compileOnly 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

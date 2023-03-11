@@ -31,7 +31,7 @@ import java.util.List;
 @RestController
 public class OneMealController {
     private final OneMealService oneMealService;
-    private ImageService imageService;
+
 
     @Autowired
     @Qualifier("oneMealRepositoryImpl")
@@ -75,6 +75,8 @@ public class OneMealController {
 
         return oneMealService.save(requestDto);
     }
+
+    private ImageService imageService;
 
     @PostMapping("/mealimage")
     public String handleFileUpload(@RequestParam("file") MultipartFile file){
