@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface OneMealRepositoryCustom {
     List<Tuple> findOneMealByCreatedTime();
+    List<Tuple> findOneMealByCreatedMonth();
 }

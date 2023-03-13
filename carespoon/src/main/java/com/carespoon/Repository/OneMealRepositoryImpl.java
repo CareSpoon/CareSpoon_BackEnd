@@ -20,4 +20,13 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
                 .groupBy(oneMeal.eatDate)
                 .fetch();
     }
+
+    @Override
+    public List<Tuple> findOneMealByCreatedMonth(){
+        QOneMeal oneMeal = QOneMeal.oneMeal;
+        return from(oneMeal)
+                .select(oneMeal.eatDate , oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum())
+                .groupBy(oneMeal.eatDate.month())
+                .fetch();
+    }
 }
