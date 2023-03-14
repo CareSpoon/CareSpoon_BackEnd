@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,38 +38,18 @@ public class OneMealController {
     @Qualifier("oneMealRepositoryImpl")
     private OneMealRepositoryCustom oneMealRepositoryCustom;
 
-    @Getter
-    @Setter
-    public static class Daily{
-        private LocalDate date;
-        private Integer totalKcal;
-        private Integer totalFat;
-        private Integer totalProtein;
-        private Integer totalCarbon;
-        public Daily(LocalDate date, Integer totalKcal, Integer totalCarbon, Integer totalFat, Integer totalProtein){
-            this.date = date;
-            this.totalKcal = totalKcal;
-            this.totalCarbon = totalCarbon;
-            this.totalFat = totalFat;
-            this.totalProtein = totalProtein;
-        }
+    @GetMapping("/dailynurition")
+    public List<Tuple> getDaily(@RequestParam String date){
+        LocalDate localDate = LocalDate.parse(date);
+        List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(localDate);
+        return dailyNutrition;
     }
 
-    @GetMapping("/dailynurition")
-    public List<Daily> getDaily(){
-        List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime();
-
-        List<Daily> dailyNutritionList = new ArrayList<>();
-        for(Tuple tuple: dailyNutrition) {
-            LocalDate date = tuple.get(0,LocalDate.class);
-            Integer totalKcal = tuple.get(1, Integer.class);
-            Integer totalCarbon = tuple.get(2,Integer.class);
-            Integer totalFat = tuple.get(3,Integer.class);
-            Integer totalProtein = tuple.get(4, Integer.class);
-
-            dailyNutritionList.add(new Daily(date, totalKcal,totalCarbon, totalFat, totalProtein));
-        }
-        return dailyNutritionList;
+    @GetMapping("/monthlynutrition")
+    public List<Tuple> getMonthly(@RequestParam String month){
+        YearMonth yearMonth = YearMonth.parse(month);
+        List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(yearMonth);
+        return  monthlyNutrition;
     }
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto) {

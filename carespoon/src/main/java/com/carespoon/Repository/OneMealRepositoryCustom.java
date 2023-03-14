@@ -3,9 +3,11 @@ package com.carespoon.Repository;
 import com.carespoon.domain.OneMeal;
 import com.querydsl.core.Tuple;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 
 public interface OneMealRepositoryCustom {
-    List<Tuple> findOneMealByCreatedTime();
-    List<Tuple> findOneMealByCreatedMonth();
+    List<Tuple> findOneMealByCreatedTime(LocalDate date);
+    List<Tuple> findOneMealByCreatedMonth(YearMonth month);
 }
