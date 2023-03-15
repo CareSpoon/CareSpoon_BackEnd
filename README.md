@@ -2,4 +2,5 @@
 나만의 건강수저 Care Spoon의 BackEnd 저장소입니다.
 
 ## Server Structure : er-diagram
-![image](https://user-images.githubusercontent.com/79795051/219950221-a416db8a-5bc3-444c-83cf-317db54b02a5.png)
+![image](https://user-images.githubusercontent.com/79795051/225235595-5f158cf8-0fcf-4550-a194-0f7c2cf70a56.png)
+
