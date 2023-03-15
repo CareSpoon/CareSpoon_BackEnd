@@ -1,7 +1,6 @@
 package com.carespoon.domain.user;
 
 import com.carespoon.Repository.UserInfoRepository;
-import com.carespoon.domain.User;
 import com.carespoon.domain.UserInfo;
 import com.carespoon.dto.UserInfoSaveRequestDto;
 import com.carespoon.dto.UserInfoUpdateRequestDto;
@@ -20,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Objects;
 
 import static java.lang.Long.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
