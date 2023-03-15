@@ -1,7 +1,6 @@
 package com.carespoon.service;
 
 import com.carespoon.Repository.UserInfoRepository;
-import com.carespoon.domain.User;
 import com.carespoon.domain.UserInfo;
 import com.carespoon.dto.UserInfoResponseDto;
 import com.carespoon.dto.UserInfoSaveRequestDto;
