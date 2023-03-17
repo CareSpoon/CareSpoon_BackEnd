@@ -7,14 +7,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Random;
 import java.util.UUID;
 
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class SeniorUser {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +23,15 @@ public class SeniorUser {
 
     private String name;
 
-    private String uniqueCode;
+    private UUID uuid;
+
+    private int role;
 
     @Builder
-    public SeniorUser(String email, String name){
+    public User(String email, String name, int role){
         this.email = email;
         this.name = name;
-        Random random = new Random();
-        this.uniqueCode = String.format("%06d", random.nextInt(1000000));
+        this.role = role;
     }
 
 }

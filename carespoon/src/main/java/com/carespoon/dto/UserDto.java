@@ -1,4 +1,4 @@
 package com.carespoon.dto;
 
-public class SeniorUserDto {
+public class UserDto {
 }
