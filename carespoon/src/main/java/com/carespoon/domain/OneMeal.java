@@ -43,6 +43,10 @@ public class OneMeal{
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private LocalDateTime createdDate; // LocalDateTime 변수 추가
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @Builder
     public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, LocalDate eatDate, LocalDateTime createdDate){
         this.meal_Kcal = meal_Kcal;
