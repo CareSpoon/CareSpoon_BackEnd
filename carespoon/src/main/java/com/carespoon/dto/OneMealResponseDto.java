@@ -1,5 +1,6 @@
 package com.carespoon.dto;
 
+import com.carespoon.domain.Image;
 import com.carespoon.domain.OneMeal;
 import lombok.Getter;
 
@@ -20,6 +21,8 @@ public class OneMealResponseDto {
 
     private LocalDateTime createdDate;
 
+    private Image image;
+
     public OneMealResponseDto(OneMeal entity){
         this.id = entity.getId();
         this.meal_Kcal = entity.getMeal_Kcal();
@@ -28,5 +31,6 @@ public class OneMealResponseDto {
         this.meal_Protein = entity.getMeal_Protein();
         this.createdDate = entity.getCreatedDate();
         this.eatDate = entity.getEatDate();
+        this.image = entity.getMealImage();
     }
 }

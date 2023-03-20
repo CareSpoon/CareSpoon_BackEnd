@@ -21,6 +21,8 @@ public class OneMealSaveRequestDto {
     private LocalDate eatDate;
 
     private LocalDateTime createdDate;
+
+    private ImageDto imageDto;
     @Builder
     public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein,  LocalDate eatDate, LocalDateTime createdDate){
         this.meal_Kcal = meal_Kcal;
