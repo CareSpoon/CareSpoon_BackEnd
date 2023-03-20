@@ -1,4 +1,8 @@
 package com.carespoon.Repository;
 
-public interface UserRepository {
+import com.carespoon.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUUID();
 }
