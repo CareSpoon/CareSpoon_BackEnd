@@ -3,7 +3,6 @@ package com.carespoon.dto;
 import com.carespoon.domain.User;
 import com.carespoon.domain.UserInfo;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 public class UserResponseDto{

@@ -8,12 +8,10 @@ import com.carespoon.dto.OneMealSaveRequestDto;
 import com.carespoon.service.ImageService;
 import com.carespoon.service.OneMealService;
 import com.querydsl.core.Tuple;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.FileSystemResource;
+
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;

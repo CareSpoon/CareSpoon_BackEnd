@@ -1,6 +1,5 @@
 package com.carespoon.Repository;
 
-import com.carespoon.domain.OneMeal;
 import com.querydsl.core.Tuple;
 
 import java.time.LocalDate;

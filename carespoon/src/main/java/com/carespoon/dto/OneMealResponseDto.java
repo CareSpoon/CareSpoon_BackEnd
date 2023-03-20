@@ -4,7 +4,6 @@ import com.carespoon.domain.Image;
 import com.carespoon.domain.OneMeal;
 import lombok.Getter;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
