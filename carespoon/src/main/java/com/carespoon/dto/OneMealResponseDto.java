@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 public class OneMealResponseDto {
@@ -16,9 +17,7 @@ public class OneMealResponseDto {
     private int meal_Fat;
     private int meal_Protein;
 
-    private LocalDate eatDate;
-
-    private LocalDateTime createdDate;
+    private Date eatDate;
 
     private Image image;
 
@@ -28,7 +27,6 @@ public class OneMealResponseDto {
         this.meal_Fat = entity.getMeal_Fat();
         this.meal_Carbon = entity.getMeal_Carbon();
         this.meal_Protein = entity.getMeal_Protein();
-        this.createdDate = entity.getCreatedDate();
         this.eatDate = entity.getEatDate();
         this.image = entity.getMealImage();
     }

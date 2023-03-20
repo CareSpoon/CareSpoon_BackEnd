@@ -28,6 +28,10 @@ public class UserInfo {
     @Column
     private double metabolicRate;
 
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
     @Builder
     public UserInfo(long userId, int age, int sex, double height, double weight){
         this.userId = userId;
