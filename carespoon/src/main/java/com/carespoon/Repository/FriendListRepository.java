@@ -7,5 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface FriendListRepository extends JpaRepository<FriendList, Long> {
-    List<UUID> findMyFriendList(UUID uuid);
+    List<String> findBySeniorId(UUID uuid);
+    List<String> findByViewerId(UUID uuid);
 }

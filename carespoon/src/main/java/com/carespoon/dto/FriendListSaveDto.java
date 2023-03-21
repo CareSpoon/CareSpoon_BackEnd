@@ -1,5 +1,6 @@
 package com.carespoon.dto;
 
+import com.carespoon.domain.FriendList;
 import com.carespoon.service.UserService;
 
 import java.util.UUID;
@@ -23,5 +24,14 @@ public class FriendListSaveDto {
         this.seniorId = seniorId;
         this.seniorName = userService.findNameByUUId(seniorId);
         this.viewerName = userService.findNameByUUId(viewerId);
+    }
+
+    public FriendList toEntity(){
+        return FriendList.builder()
+                .viewerId(viewerId)
+                .seniorId(seniorId)
+                .seniorName(seniorName)
+                .viewerName(viewerName)
+                .build();
     }
 }

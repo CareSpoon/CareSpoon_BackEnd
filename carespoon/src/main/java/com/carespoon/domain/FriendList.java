@@ -30,8 +30,10 @@ public class FriendList {
     private String seniorName;
 
     @Builder
-    public FriendList(UUID viewerId, UUID seniorId){
+    public FriendList(UUID viewerId, UUID seniorId, String seniorName, String viewerName){
         this.viewerId = viewerId;
         this.seniorId = seniorId;
+        this.seniorName = seniorName;
+        this.viewerName = viewerName;
     }
 }

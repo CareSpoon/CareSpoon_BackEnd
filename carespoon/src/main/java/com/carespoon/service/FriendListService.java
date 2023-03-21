@@ -1,6 +1,7 @@
 package com.carespoon.service;
 
 import com.carespoon.Repository.FriendListRepository;
+import com.carespoon.dto.FriendListSaveDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,11 @@ public class FriendListService {
     @Autowired
     private FriendListRepository friendListRepository;
 
-    public List<UUID> findFriendList(UUID uuid){
-        List<UUID> friendList = friendListRepository.findMyFriendList(uuid);
+    public Long save(FriendListSaveDto friendListSaveDto){
+        return friendListRepository.save(friendListSaveDto.toEntity()).getId();
+    }
+    public List<String> findFriendList(UUID uuid){
+        List<String> friendList = friendListRepository.findBySeniorId(uuid);
         return friendList;
     }
 }

@@ -82,4 +82,5 @@ public class OneMealController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getImageName() + "\"")
                 .body(resource);
     }
+
 }
