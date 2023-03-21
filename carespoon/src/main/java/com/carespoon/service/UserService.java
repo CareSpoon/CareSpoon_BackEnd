@@ -12,8 +12,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public String findNameByUUId(java.util.UUID uuid){
-        User user = userRepository.findByUUID(uuid);
+    public String findByUuid(java.util.UUID uuid){
+        User user = userRepository.findByUuid(uuid);
         String name = user.getName();
         return name;
     }
