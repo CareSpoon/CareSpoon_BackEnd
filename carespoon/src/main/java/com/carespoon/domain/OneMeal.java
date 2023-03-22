@@ -39,6 +39,7 @@ public class OneMeal{
     private Date eatDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_Id")
     private User user;
 
     @Builder

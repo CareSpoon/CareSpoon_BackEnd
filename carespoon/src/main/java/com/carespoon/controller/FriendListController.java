@@ -11,5 +11,4 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class FriendListController {
-
 }

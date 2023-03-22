@@ -53,7 +53,6 @@ public class OneMealRepositoryTest {
 
     @Test
     public void BaseTimeEntity_등록(){
-        LocalDateTime now = LocalDateTime.of(2023,2,28,10,7,35);
         oneMealRepository.save(
                 OneMeal.builder()
                         .meal_Fat(40)
@@ -65,7 +64,6 @@ public class OneMealRepositoryTest {
         List<OneMeal> oneMealList = oneMealRepository.findAll();
 
         OneMeal oneMeal = oneMealList.get(0);
-        System.out.println(">>>>>>> createDate = "+ oneMeal.getCreatedDate());
     }
     @Test
     public void 날짜별_식단_출력(){
