@@ -2,6 +2,7 @@ package com.carespoon.Repository;
 
 import com.carespoon.domain.FriendList;
 import com.carespoon.domain.QFriendList;
+import com.querydsl.core.Tuple;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
@@ -15,21 +16,21 @@ public class FriendListRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public List<String> findBySeniorId(UUID uuid){
+    public List<Tuple> findBySeniorId(UUID uuid){
         QFriendList friendList = QFriendList.friendList;
 
         return from(friendList)
-                .select(friendList.viewerName)
+                .select(friendList.viewerName, friendList.viewerId)
                 .where(friendList.seniorId.eq(uuid))
                 .fetch();
 
     }
 
     @Override
-    public List<String> findByViewerId(UUID uuid){
+    public List<Tuple> findByViewerId(UUID uuid){
         QFriendList friendList = QFriendList.friendList;
         return from(friendList)
-                .select(friendList.seniorName)
+                .select(friendList.seniorName, friendList.seniorId)
                 .where(friendList.viewerId.eq(uuid))
                 .fetch();
     }

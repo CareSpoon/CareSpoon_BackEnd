@@ -3,6 +3,7 @@ package com.carespoon.controller;
 import com.carespoon.Repository.FriendListRepositoryCustom;
 import com.carespoon.dto.FriendListSaveDto;
 import com.carespoon.service.FriendListService;
+import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,8 +26,8 @@ public class FriendListController {
     }
 
     @GetMapping("/friendsof")
-    public List<String> getFriend(@RequestParam UUID uuid, @RequestParam int role){
-        List<String> friendsOf;
+    public List<Tuple> getFriend(@RequestParam UUID uuid, @RequestParam int role){
+        List<Tuple> friendsOf;
         if(role == 0){
             friendsOf = friendListRepositoryCustom.findBySeniorId(uuid);
         }else{
