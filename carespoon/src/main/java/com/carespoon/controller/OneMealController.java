@@ -30,7 +30,6 @@ import java.util.List;
 public class OneMealController {
     private final OneMealService oneMealService;
 
-
     @Autowired
     @Qualifier("oneMealRepositoryImpl")
     private OneMealRepositoryCustom oneMealRepositoryCustom;
@@ -50,7 +49,6 @@ public class OneMealController {
     }
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
-
         return oneMealService.save(requestDto);
     }
 
