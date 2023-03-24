@@ -11,12 +11,12 @@ import java.util.UUID;
 
 @Repository
 public class FriendListRepositoryImpl extends QuerydslRepositorySupport implements FriendListRepositoryCustom {
-    public FriendListRepositoryImpl(){
+    public FriendListRepositoryImpl() {
         super(FriendList.class);
     }
 
     @Override
-    public List<Tuple> findBySeniorId(UUID uuid){
+    public List<Tuple> findBySeniorId(UUID uuid) {
         QFriendList friendList = QFriendList.friendList;
 
         return from(friendList)
@@ -27,11 +27,20 @@ public class FriendListRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public List<Tuple> findByViewerId(UUID uuid){
+    public List<Tuple> findByViewerId(UUID uuid) {
         QFriendList friendList = QFriendList.friendList;
         return from(friendList)
                 .select(friendList.seniorName, friendList.seniorId)
                 .where(friendList.viewerId.eq(uuid))
                 .fetch();
+    }
+
+    @Override
+    public Long findIdByUUID(UUID vieweruuid, UUID senioruuid) {
+        QFriendList friendList = QFriendList.friendList;
+        return from(friendList)
+                .select(friendList.id)
+                .where(friendList.seniorId.eq(senioruuid).and(friendList.viewerId.eq(vieweruuid)))
+                .fetch().get(0);
     }
 }

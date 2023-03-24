@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface FriendListRepositoryCustom {
     List<Tuple> findBySeniorId(UUID uuid);
     List<Tuple> findByViewerId(UUID uuid);
+
+    Long findIdByUUID(UUID vieweruuid, UUID senioruuid);
 }
