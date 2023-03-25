@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -31,6 +33,9 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private UserInfo userInfo;
+
+    @OneToMany(mappedBy = "user")
+    private List<OneMeal> oneMeals = new ArrayList<OneMeal>();
 
     public User(String email, String name, int role){
         this.email = email;

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,8 +35,8 @@ public class OneMealController {
     @Qualifier("oneMealRepositoryImpl")
     private OneMealRepositoryCustom oneMealRepositoryCustom;
 
-    @GetMapping("/dailynurition")
-    public List<Tuple> getDaily(@RequestParam String date){
+    @GetMapping("/{userId}/dailynurition")
+    public List<Tuple> getDaily(@PathVariable UUID userId, @RequestParam String date){
         LocalDate localDate = LocalDate.parse(date);
         List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(localDate);
         return dailyNutrition;
