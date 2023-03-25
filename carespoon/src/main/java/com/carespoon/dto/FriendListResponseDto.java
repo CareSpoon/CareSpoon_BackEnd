@@ -17,7 +17,7 @@ public class FriendListResponseDto {
     private String seniorName;
 
     public FriendListResponseDto(FriendList entity){
-        this.id = entity.getId();
+        this.id = entity.getListId();
         this.viewerId = entity.getViewerId();
         this.viewerName = entity.getViewerName();
         this.seniorId = entity.getSeniorId();

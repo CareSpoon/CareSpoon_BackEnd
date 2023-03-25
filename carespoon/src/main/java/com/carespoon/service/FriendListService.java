@@ -18,7 +18,7 @@ public class FriendListService {
 
     @Transactional
     public Long save(FriendListSaveDto friendListSaveDto){
-        return friendListRepository.save(friendListSaveDto.toEntity()).getId();
+        return friendListRepository.save(friendListSaveDto.toEntity()).getListId();
     }
 
     @Transactional
