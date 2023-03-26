@@ -48,9 +48,9 @@ public class OneMealController {
         List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(yearMonth);
         return  monthlyNutrition;
     }
-    @PostMapping("/onemeal")
-    public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
-        return oneMealService.save(requestDto);
+    @PostMapping("{userId}/onemeal")
+    public Long save(@PathVariable UUID userId, @RequestBody OneMealSaveRequestDto requestDto) {
+        return oneMealService.save(userId, requestDto);
     }
 
     private ImageService imageService;

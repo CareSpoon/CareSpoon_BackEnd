@@ -8,13 +8,15 @@ import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class OneMealService {
     private final OneMealRepository oneMealRepository;
 
     @Transactional
-    public Long save(OneMealSaveRequestDto requestDto)
+    public Long save(UUID userId, OneMealSaveRequestDto requestDto)
     {
         return oneMealRepository.save(requestDto.toEntity()).getId();
     }
