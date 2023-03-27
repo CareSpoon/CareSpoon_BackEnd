@@ -1,11 +1,8 @@
 package com.carespoon.dto;
 
-import com.carespoon.domain.Image;
 import com.carespoon.domain.OneMeal;
 import lombok.Getter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter

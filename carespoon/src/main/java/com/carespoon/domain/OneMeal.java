@@ -31,8 +31,6 @@ public class OneMeal{
     @Column
     private int meal_Protein;
 
-    @OneToOne(mappedBy = "oneMeal", cascade = CascadeType.ALL)
-    private Image mealImage;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
