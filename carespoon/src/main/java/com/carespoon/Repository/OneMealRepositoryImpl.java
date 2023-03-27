@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
+import java.util.UUID;
 
 public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements OneMealRepositoryCustom {
     public OneMealRepositoryImpl(){
@@ -15,7 +16,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<Tuple> findOneMealByCreatedTime(LocalDate date){
+    public List<Tuple> findOneMealByCreatedTime(UUID userId, LocalDate date){
         QOneMeal oneMeal = QOneMeal.oneMeal;
         return from(oneMeal)
                 .select(oneMeal.eatDate , oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum())
@@ -25,7 +26,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<Tuple> findOneMealByCreatedMonth(YearMonth month){
+    public List<Tuple> findOneMealByCreatedMonth(UUID userId,YearMonth month){
         QOneMeal oneMeal = QOneMeal.oneMeal;
         return from(oneMeal)
                 .select(oneMeal.eatDate , oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum())

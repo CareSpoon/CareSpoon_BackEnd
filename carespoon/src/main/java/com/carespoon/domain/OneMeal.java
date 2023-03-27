@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Entity
@@ -38,17 +39,17 @@ public class OneMeal{
     @CreatedDate
     private Date eatDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_Id")
-    private User user;
+    @Column
+    private UUID userId;
 
     @Builder
-    public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Date eatDate) {
+    public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Date eatDate, UUID userId) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
         this.eatDate = eatDate;
+        this.userId = userId;
     }
 
 }

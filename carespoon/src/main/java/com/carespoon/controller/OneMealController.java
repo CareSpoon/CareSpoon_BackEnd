@@ -35,17 +35,17 @@ public class OneMealController {
     @Qualifier("oneMealRepositoryImpl")
     private OneMealRepositoryCustom oneMealRepositoryCustom;
 
-    @GetMapping("/{userId}/dailynurition")
+    @GetMapping("/dailynurition/{userId}")
     public List<Tuple> getDaily(@PathVariable UUID userId, @RequestParam String date){
         LocalDate localDate = LocalDate.parse(date);
-        List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(localDate);
+        List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(userId, localDate);
         return dailyNutrition;
     }
 
-    @GetMapping("/monthlynutrition")
-    public List<Tuple> getMonthly(@RequestParam String month){
+    @GetMapping("/monthlynutrition/{userId}")
+    public List<Tuple> getMonthly(@PathVariable UUID userId, @RequestParam String month){
         YearMonth yearMonth = YearMonth.parse(month);
-        List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(yearMonth);
+        List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(userId, yearMonth);
         return  monthlyNutrition;
     }
     @PostMapping("{userId}/onemeal")
