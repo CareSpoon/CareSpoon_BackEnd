@@ -2,6 +2,7 @@ package com.carespoon.Repository;
 
 import com.carespoon.domain.OneMeal;
 import com.carespoon.domain.QOneMeal;
+import com.carespoon.domain.User;
 import com.querydsl.core.Tuple;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
@@ -16,7 +17,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<Tuple> findOneMealByCreatedTime(UUID userId, LocalDate date){
+    public List<Tuple> findOneMealByCreatedTime(User user, LocalDate date){
         QOneMeal oneMeal = QOneMeal.oneMeal;
         return from(oneMeal)
                 .select(oneMeal.eatDate , oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum())
@@ -26,7 +27,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<Tuple> findOneMealByCreatedMonth(UUID userId,YearMonth month){
+    public List<Tuple> findOneMealByCreatedMonth(User user, YearMonth month){
         QOneMeal oneMeal = QOneMeal.oneMeal;
         return from(oneMeal)
                 .select(oneMeal.eatDate , oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum())

@@ -39,17 +39,18 @@ public class OneMeal{
     @CreatedDate
     private Date eatDate;
 
-    @Column
-    private UUID userId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
     @Builder
-    public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Date eatDate, UUID userId) {
+    public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Date eatDate, User user) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
         this.eatDate = eatDate;
-        this.userId = userId;
+        this.user = user;
     }
 
 }

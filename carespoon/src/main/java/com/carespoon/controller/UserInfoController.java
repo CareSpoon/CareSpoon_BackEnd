@@ -4,8 +4,11 @@ import com.carespoon.dto.UserInfoResponseDto;
 import com.carespoon.dto.UserInfoSaveRequestDto;
 import com.carespoon.dto.UserInfoUpdateRequestDto;
 import com.carespoon.service.UserInfoService;
+import com.carespoon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -13,8 +16,11 @@ public class UserInfoController {
 
     private final UserInfoService userInfoService;
 
-    @PostMapping("/userinfo")
-    public Long save(@RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
+    private UserService userService;
+
+    @PostMapping("/userinfo/{userId}")
+    public Long save(@PathVariable UUID userId, @RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
+
         return userInfoService.save(userInfoSaveRequestDto);
     }
 

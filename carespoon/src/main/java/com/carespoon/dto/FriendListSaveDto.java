@@ -22,8 +22,8 @@ public class FriendListSaveDto {
     public FriendListSaveDto(UUID viewerId, UUID seniorId){
         this.viewerId = viewerId;
         this.seniorId = seniorId;
-        this.seniorName = userService.findByUuid(seniorId);
-        this.viewerName = userService.findByUuid(viewerId);
+        this.seniorName = userService.findByUuid(seniorId).getName();
+        this.viewerName = userService.findByUuid(viewerId).getName();
     }
 
     public FriendList toEntity(){
