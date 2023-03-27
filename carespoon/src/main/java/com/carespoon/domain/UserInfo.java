@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class UserInfo {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column
     private int age;
@@ -33,8 +33,8 @@ public class UserInfo {
     private User user;
 
     @Builder
-    public UserInfo(long userId, int age, int sex, double height, double weight){
-        this.userId = userId;
+    public UserInfo(User user, int age, int sex, double height, double weight){
+        this.user = user;
         this.age = age;
         this.sex = sex;
         this.height = height;
@@ -48,8 +48,8 @@ public class UserInfo {
         }
     }
 
-    public void update(long userId, int age, int sex, double height, double weight){
-        this.userId = userId;
+    public void update(User user, int age, int sex, double height, double weight){
+        this.user = user;
         this.age = age;
         this.sex = sex;
         this.height = height;

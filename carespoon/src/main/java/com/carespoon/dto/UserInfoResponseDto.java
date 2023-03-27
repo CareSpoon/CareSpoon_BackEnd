@@ -1,11 +1,12 @@
 package com.carespoon.dto;
 
+import com.carespoon.domain.User;
 import com.carespoon.domain.UserInfo;
 import lombok.Getter;
 
 @Getter
 public class UserInfoResponseDto {
-    private Long userId;
+    private User user;
 
     private double height;
 
@@ -18,7 +19,7 @@ public class UserInfoResponseDto {
     private int sex;
 
     public UserInfoResponseDto(UserInfo Entity){
-        this.userId = Entity.getUserId();
+        this.user = Entity.getUser();
         this.age = Entity.getAge();
         this.height = Entity.getHeight();
         this.sex = Entity.getSex();

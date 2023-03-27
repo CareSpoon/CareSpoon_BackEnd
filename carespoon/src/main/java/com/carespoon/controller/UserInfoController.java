@@ -18,20 +18,18 @@ public class UserInfoController {
 
     private UserService userService;
 
-    @PostMapping("/userinfo/{userId}")
-    public Long save(@PathVariable UUID userId, @RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
-
-        return userInfoService.save(userInfoSaveRequestDto);
+    @PostMapping("/userinfo")
+    public void save(@RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
+        userInfoService.save(userInfoSaveRequestDto);
     }
 
-    @GetMapping("/userinfo/{id}")
-    public UserInfoResponseDto findById(@PathVariable Long id){
-        return userInfoService.findById(id);
+    @GetMapping("/userinfo/{userId}")
+    public UserInfoResponseDto findByUser(@PathVariable UUID userId){
+        return userInfoService.findByUser(userId);
     }
 
-    @PutMapping("/userinfo/update/{id}")
-    public Long update(@PathVariable Long id, @RequestBody UserInfoUpdateRequestDto userInfoUpdateRequestDto){
-        return userInfoService.update(id, userInfoUpdateRequestDto);
+    @PutMapping("/userinfo/update/{userId}")
+    public void update(@PathVariable UUID userId, @RequestBody UserInfoUpdateRequestDto userInfoUpdateRequestDto){
+        userInfoService.update(userId, userInfoUpdateRequestDto);
     }
-
 }

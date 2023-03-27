@@ -1,5 +1,6 @@
 package com.carespoon.dto;
 
+import com.carespoon.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UserInfoUpdateRequestDto {
-    private Long userId;
+    private User user;
 
     private double height;
 
@@ -20,8 +21,8 @@ public class UserInfoUpdateRequestDto {
     private int sex;
 
     @Builder
-    public UserInfoUpdateRequestDto(Long userId, int age, int sex, double height, double weight){
-        this.userId = userId;
+    public UserInfoUpdateRequestDto(User user, int age, int sex, double height, double weight){
+        this.user = user;
         this.age = age;
         this.sex = sex;
         this.height = height;

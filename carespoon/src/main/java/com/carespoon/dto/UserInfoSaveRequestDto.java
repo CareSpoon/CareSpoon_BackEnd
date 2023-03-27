@@ -1,5 +1,6 @@
 package com.carespoon.dto;
 
+import com.carespoon.domain.User;
 import com.carespoon.domain.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserInfoSaveRequestDto {
 
-    private Long userId;
+    private User user;
 
     private double height;
 
@@ -23,8 +24,8 @@ public class UserInfoSaveRequestDto {
     private int sex;
 
     @Builder
-    public UserInfoSaveRequestDto(Long userId, int age, int sex, double height, double weight){
-        this.userId = userId;
+    public UserInfoSaveRequestDto(User user, int age, int sex, double height, double weight){
+        this.user = user;
         this.age = age;
         this.sex = sex;
         this.height = height;
@@ -40,7 +41,7 @@ public class UserInfoSaveRequestDto {
 
     public UserInfo toEntity(){
         return UserInfo.builder()
-                .userId(userId)
+                .user(user)
                 .age(age)
                 .sex(sex)
                 .weight(weight)

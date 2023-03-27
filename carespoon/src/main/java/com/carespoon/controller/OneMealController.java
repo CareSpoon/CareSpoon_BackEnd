@@ -73,7 +73,7 @@ public class OneMealController {
     }
 
     @GetMapping("/onemeal/{userId}")
-    public List<OneMealResponseDto> findByUserId(@PathVariable UUID userId) {
+    public List<OneMealResponseDto> findById(@PathVariable UUID userId) {
         return oneMealService.findByUser(userId);
     }
     @GetMapping("/mealimage/{id}")

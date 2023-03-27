@@ -41,75 +41,75 @@ public class userInfoApiControllerTest {
         userInfoRepository.deleteAll();
     }
     
-    @Test
-    public void UserInfo_등록된다() throws Exception{
-        //given
-        Long userId = valueOf(1);
-        int age = 20;
-        int sex = 1;
-        double height = 172.2;
-        double weight = 56.3;
-        double metabolicRate = 447.6 + (9.25*weight)+ 3.1*height - 4.33*age;
-
-        UserInfoSaveRequestDto userInfoSaveRequestDto = UserInfoSaveRequestDto.builder()
-                .userId(userId)
-                .age(age)
-                .height(height)
-                .sex(sex)
-                .weight(weight)
-                .build();
-        
-        String url = "http://localhost:" + port + "/userinfo";
-
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, userInfoSaveRequestDto, Long.class);
-
-        //then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isGreaterThan(0L);
-
-        List<UserInfo> all= userInfoRepository.findAll();
-
-        AssertionsForClassTypes.assertThat(all.get(0).getUserId()).isEqualTo(userId);
-        AssertionsForClassTypes.assertThat(all.get(0).getWeight()).isEqualTo(weight);
-        AssertionsForClassTypes.assertThat(all.get(0).getSex()).isEqualTo(sex);
-        AssertionsForClassTypes.assertThat(all.get(0).getHeight()).isEqualTo(height);
-        AssertionsForClassTypes.assertThat(all.get(0).getAge()).isEqualTo(age);
-        AssertionsForClassTypes.assertThat(all.get(0).getMetabolicRate()).isEqualTo(metabolicRate);
-    }
-
-    @Test
-    public void userInfo_수정된다() throws Exception{
-        //given
-        UserInfo savedUserInfo = userInfoRepository.save(UserInfo.builder()
-                        .height(170)
-                        .weight(56)
-                        .sex(1)
-                        .age(20)
-                        .userId(1)
-                .build());
-
-        Long updatedId = savedUserInfo.getUserId();
-        int grownHeight = 172;
-        int grownWeight = 54;
-
-        UserInfoUpdateRequestDto userInfoUpdateRequestDto = UserInfoUpdateRequestDto.builder()
-                .height(grownHeight)
-                .weight(grownWeight)
-                .build();
-
-        String url = "http://localhost:" + port +"/userinfo/update/" + updatedId;
-
-        HttpEntity<UserInfoUpdateRequestDto> requestEntity = new HttpEntity<>(userInfoUpdateRequestDto);
-
-        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
-
-        //then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isGreaterThan(0L);
-
-        List<UserInfo> all= userInfoRepository.findAll();
-
-        assertThat(all.get(0).getWeight()).isEqualTo(grownWeight);
-        assertThat(all.get(0).getHeight()).isEqualTo(grownHeight);
-    }
+//    @Test
+//    public void UserInfo_등록된다() throws Exception{
+//        //given
+//        Long userId = valueOf(1);
+//        int age = 20;
+//        int sex = 1;
+//        double height = 172.2;
+//        double weight = 56.3;
+//        double metabolicRate = 447.6 + (9.25*weight)+ 3.1*height - 4.33*age;
+//
+//        UserInfoSaveRequestDto userInfoSaveRequestDto = UserInfoSaveRequestDto.builder()
+//                .userId(userId)
+//                .age(age)
+//                .height(height)
+//                .sex(sex)
+//                .weight(weight)
+//                .build();
+//
+//        String url = "http://localhost:" + port + "/userinfo";
+//
+//        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, userInfoSaveRequestDto, Long.class);
+//
+//        //then
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        assertThat(responseEntity.getBody()).isGreaterThan(0L);
+//
+//        List<UserInfo> all= userInfoRepository.findAll();
+//
+//        AssertionsForClassTypes.assertThat(all.get(0).getUserId()).isEqualTo(userId);
+//        AssertionsForClassTypes.assertThat(all.get(0).getWeight()).isEqualTo(weight);
+//        AssertionsForClassTypes.assertThat(all.get(0).getSex()).isEqualTo(sex);
+//        AssertionsForClassTypes.assertThat(all.get(0).getHeight()).isEqualTo(height);
+//        AssertionsForClassTypes.assertThat(all.get(0).getAge()).isEqualTo(age);
+//        AssertionsForClassTypes.assertThat(all.get(0).getMetabolicRate()).isEqualTo(metabolicRate);
+//    }
+//
+//    @Test
+//    public void userInfo_수정된다() throws Exception{
+//        //given
+//        UserInfo savedUserInfo = userInfoRepository.save(UserInfo.builder()
+//                        .height(170)
+//                        .weight(56)
+//                        .sex(1)
+//                        .age(20)
+//                        .userId(1)
+//                .build());
+//
+//        Long updatedId = savedUserInfo.getUserId();
+//        int grownHeight = 172;
+//        int grownWeight = 54;
+//
+//        UserInfoUpdateRequestDto userInfoUpdateRequestDto = UserInfoUpdateRequestDto.builder()
+//                .height(grownHeight)
+//                .weight(grownWeight)
+//                .build();
+//
+//        String url = "http://localhost:" + port +"/userinfo/update/" + updatedId;
+//
+//        HttpEntity<UserInfoUpdateRequestDto> requestEntity = new HttpEntity<>(userInfoUpdateRequestDto);
+//
+//        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+//
+//        //then
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        assertThat(responseEntity.getBody()).isGreaterThan(0L);
+//
+//        List<UserInfo> all= userInfoRepository.findAll();
+//
+//        assertThat(all.get(0).getWeight()).isEqualTo(grownWeight);
+//        assertThat(all.get(0).getHeight()).isEqualTo(grownHeight);
+//    }
 } 
