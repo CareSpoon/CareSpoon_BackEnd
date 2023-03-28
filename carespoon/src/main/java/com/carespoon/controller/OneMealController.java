@@ -56,7 +56,7 @@ public class OneMealController {
 //    }
     public Long save(@RequestBody List<String> menus, @PathVariable UUID userid) throws IOException {
         User user = userService.findByUuid(userid);
-        int kcal = 0, protein = 0, carbon = 0, fat = 0;
+        double kcal = 0, protein = 0, carbon = 0, fat = 0;
         for (int i = 0; i < menus.size(); i++) {
             kcal += menuService.findByMenuName(menus.get(i)).getMenu_Kcal();
             protein += menuService.findByMenuName(menus.get(i)).getMenu_Protein();

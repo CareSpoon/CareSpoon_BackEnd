@@ -20,16 +20,16 @@ public class OneMeal{
 
 
     @Column
-    private int meal_Kcal;
+    private double meal_Kcal;
 
     @Column
-    private int meal_Carbon;
+    private double meal_Carbon;
 
     @Column
-    private int meal_Fat;
+    private double meal_Fat;
 
     @Column
-    private int meal_Protein;
+    private double meal_Protein;
 
 
     @Column(nullable = false, updatable = false)
@@ -41,15 +41,16 @@ public class OneMeal{
     @JoinColumn(name = "userId")
     private User user;
 
-    private String image;
+    private String imageUrl;
     @Builder
-    public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Date eatDate, User user) {
+    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, Date eatDate, User user, String imageUrl) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
         this.eatDate = eatDate;
         this.user = user;
+        this.imageUrl = imageUrl;
     }
 
 }

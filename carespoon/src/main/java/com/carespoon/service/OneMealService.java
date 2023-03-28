@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,20 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.List;
 
-@RequiredArgsConstructor
+
 @Service
 public class OneMealService {
-    private final OneMealRepository oneMealRepository;
+    private OneMealRepository oneMealRepository;
 
     private UserService userService;
 
     private Storage storage;
     @Value("${spring.cloud.gcp.storage.bucket}")
     private String bucketName;
+
+    public OneMealService(){
+        this.storage = StorageOptions.getDefaultInstance().getService();
+    }
     @Transactional
     public Long save(OneMealSaveRequestDto requestDto) throws IOException
     {

@@ -9,13 +9,14 @@ import java.util.Date;
 public class OneMealResponseDto {
 
     private Long id;
-    private int meal_Kcal;
-    private int meal_Carbon;
-    private int meal_Fat;
-    private int meal_Protein;
+    private double meal_Kcal;
+    private double meal_Carbon;
+    private double meal_Fat;
+    private double meal_Protein;
 
     private Date eatDate;
 
+    private String imageUrl;
 
     public OneMealResponseDto(OneMeal entity){
         this.id = entity.getId();

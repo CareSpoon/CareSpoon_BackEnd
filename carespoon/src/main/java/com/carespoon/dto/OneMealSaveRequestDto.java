@@ -14,10 +14,10 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class OneMealSaveRequestDto {
-    private int meal_Kcal;
-    private int meal_Carbon;
-    private int meal_Fat;
-    private int meal_Protein;
+    private double meal_Kcal;
+    private double meal_Carbon;
+    private double meal_Fat;
+    private double meal_Protein;
 
     private Date eatDate;
 
@@ -26,7 +26,7 @@ public class OneMealSaveRequestDto {
     private MultipartFile image;
 
     @Builder
-    public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein,  Date eatDate, User user){
+    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein,  Date eatDate, User user){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;

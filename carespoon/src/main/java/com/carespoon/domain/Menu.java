@@ -17,18 +17,18 @@ public class Menu {
     public String menuName;
 
     @Column
-    private int menu_Kcal;
+    private double menu_Kcal;
 
     @Column
-    private int menu_Carbon;
+    private double menu_Carbon;
 
     @Column
-    private int menu_Fat;
+    private double menu_Fat;
 
     @Column
-    private int menu_Protein;
+    private double menu_Protein;
 
-    public Menu(Long id, String menuName, int menu_Kcal, int menu_Carbon, int menu_Fat, int menu_Protein){
+    public Menu(Long id, String menuName, double menu_Kcal, double menu_Carbon, double menu_Fat, double menu_Protein){
         this.id = id;
         this.menuName = menuName;
         this.menu_Kcal = menu_Kcal;
