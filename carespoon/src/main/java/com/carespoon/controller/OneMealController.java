@@ -28,8 +28,9 @@ public class OneMealController {
     private OneMealRepositoryCustom oneMealRepositoryCustom;
 
     private UserService userService;
+
     @GetMapping("/dailynurition/{userId}")
-    public List<Tuple> getDaily(@PathVariable UUID userId, @RequestParam String date){
+    public List<Tuple> getDaily(@PathVariable UUID userId, @RequestParam String date) {
         LocalDate localDate = LocalDate.parse(date);
         User user = userService.findByUuid(userId);
         List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(user, localDate);
@@ -37,17 +38,26 @@ public class OneMealController {
     }
 
     @GetMapping("/monthlynutrition/{userId}")
-    public List<Tuple> getMonthly(@PathVariable UUID userId, @RequestParam String month){
+    public List<Tuple> getMonthly(@PathVariable UUID userId, @RequestParam String month) {
         YearMonth yearMonth = YearMonth.parse(month);
         User user = userService.findByUuid(userId);
         List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(user, yearMonth);
-        return  monthlyNutrition;
+        return monthlyNutrition;
     }
 
     @PostMapping("/onemeal")
     public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
         return oneMealService.save(requestDto);
     }
+
+    public void save(@RequestBody List<String> menus) {
+        OneMealSaveRequestDto requestDto;
+        int kcal, protein, carbon, fat;
+        for (int i = 0; i < menus.size(); i++) {
+            
+        }
+    }
+
 
     @GetMapping("/onemeal/{userId}")
     public List<OneMealResponseDto> findById(@PathVariable UUID userId) {

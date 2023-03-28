@@ -5,6 +5,7 @@ import com.carespoon.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -19,7 +20,9 @@ public class OneMealSaveRequestDto {
     private Date eatDate;
 
     private User user;
-    private ImageDto imageDto;
+
+    private MultipartFile image;
+
     @Builder
     public OneMealSaveRequestDto(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein,  Date eatDate, User user){
         this.meal_Kcal = meal_Kcal;

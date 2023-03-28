@@ -16,7 +16,6 @@ public class OneMealResponseDto {
 
     private Date eatDate;
 
-    private Image image;
 
     public OneMealResponseDto(OneMeal entity){
         this.id = entity.getId();
@@ -25,6 +24,5 @@ public class OneMealResponseDto {
         this.meal_Carbon = entity.getMeal_Carbon();
         this.meal_Protein = entity.getMeal_Protein();
         this.eatDate = entity.getEatDate();
-        this.image = entity.getMealImage();
     }
 }

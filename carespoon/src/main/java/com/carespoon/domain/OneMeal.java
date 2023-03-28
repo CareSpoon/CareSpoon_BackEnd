@@ -41,6 +41,7 @@ public class OneMeal{
     @JoinColumn(name = "userId")
     private User user;
 
+    private String image;
     @Builder
     public OneMeal(int meal_Kcal, int meal_Carbon, int meal_Fat, int meal_Protein, Date eatDate, User user) {
         this.meal_Kcal = meal_Kcal;
