@@ -8,10 +8,12 @@ import com.carespoon.dto.OneMealSaveRequestDto;
 import javax.transaction.Transactional;
 
 import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.List;
@@ -23,15 +25,16 @@ public class OneMealService {
 
     private UserService userService;
 
+    private Storage storage;
     @Value("${spring.cloud.gcp.storage.bucket}")
     private String bucketName;
     @Transactional
-    public Long save(OneMealSaveRequestDto requestDto)
+    public Long save(OneMealSaveRequestDto requestDto) throws IOException
     {
         String uuid = UUID.randomUUID().toString();
         String ext = requestDto.getImage().getContentType();
 
-        BlobInfo blobInfo = BlobInfo.newBuilder(bucketName, uuid).setContentType(ext).build();
+        BlobInfo blobInfo = storage.create(BlobInfo.newBuilder(bucketName, uuid).setContentType(ext).build(), requestDto.getImage().getInputStream());
         return oneMealRepository.save(requestDto.toEntity()).getId();
     }
 
