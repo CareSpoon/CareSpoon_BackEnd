@@ -31,7 +31,6 @@ public class GcsService {
         BlobId blobId = BlobId.of(BUCKET_NAME, FOLDER_NAME + fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(file.getContentType()).build();
         byte[] bytes = file.getBytes();
-
         try(WriteChannel writer = storage.writer(blobInfo)){
             writer.write(ByteBuffer.wrap(bytes, 0 , bytes.length));
         }

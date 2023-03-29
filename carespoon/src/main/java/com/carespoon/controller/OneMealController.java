@@ -54,24 +54,24 @@ public class OneMealController {
         return monthlyNutrition;
     }
 
-    @PostMapping("/onemeal")
-//    public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
+//    @PostMapping("/onemeal")
+////    public Long save(@RequestBody OneMealSaveRequestDto requestDto) {
+////        return oneMealService.save(requestDto);
+////    }
+//    public Long save(@RequestBody List<String> menus, @PathVariable UUID userid) throws IOException {
+//        User user = userService.findByUuid(userid);
+//        List<Menu> menuList = me
+//        double kcal = 0, protein = 0, carbon = 0, fat = 0;
+//        for (int i = 0; i < menus.size(); i++) {
+//            kcal += menuService.findByMenuName(menus.get(i)).getMenu_Kcal();
+//            protein += menuService.findByMenuName(menus.get(i)).getMenu_Protein();
+//            fat += menuService.findByMenuName(menus.get(i)).getMenu_Fat();
+//            carbon += menuService.findByMenuName(menus.get(i)).getMenu_Carbon();
+//        }
+//        OneMealSaveRequestDto requestDto = OneMealSaveRequestDto.builder()
+//                .meal_Kcal(kcal).meal_Protein(protein).meal_Fat(fat).meal_Carbon(carbon).build();
 //        return oneMealService.save(requestDto);
 //    }
-    public Long save(@RequestBody List<String> menus, @PathVariable UUID userid) throws IOException {
-        User user = userService.findByUuid(userid);
-        List<Menu> menuList = me
-        double kcal = 0, protein = 0, carbon = 0, fat = 0;
-        for (int i = 0; i < menus.size(); i++) {
-            kcal += menuService.findByMenuName(menus.get(i)).getMenu_Kcal();
-            protein += menuService.findByMenuName(menus.get(i)).getMenu_Protein();
-            fat += menuService.findByMenuName(menus.get(i)).getMenu_Fat();
-            carbon += menuService.findByMenuName(menus.get(i)).getMenu_Carbon();
-        }
-        OneMealSaveRequestDto requestDto = OneMealSaveRequestDto.builder()
-                .meal_Kcal(kcal).meal_Protein(protein).meal_Fat(fat).meal_Carbon(carbon).build();
-        return oneMealService.save(requestDto);
-    }
 
 
     @GetMapping("/onemeal/{userId}")

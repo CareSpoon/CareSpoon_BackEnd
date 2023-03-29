@@ -4,12 +4,14 @@ import javax.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class OneMeal{
