@@ -1,6 +1,8 @@
 package com.carespoon.controller;
 
+import com.carespoon.Repository.MenuRepository;
 import com.carespoon.Repository.OneMealRepositoryCustom;
+import com.carespoon.domain.Menu;
 import com.carespoon.domain.User;
 import com.carespoon.dto.OneMealResponseDto;
 import com.carespoon.dto.OneMealSaveRequestDto;
@@ -34,6 +36,8 @@ public class OneMealController {
 
     private MenuService menuService;
 
+    private MenuRepository menuRepository;
+
     @GetMapping("/dailynurition/{userId}")
     public List<Tuple> getDaily(@PathVariable UUID userId, @RequestParam String date) {
         LocalDate localDate = LocalDate.parse(date);
@@ -56,6 +60,7 @@ public class OneMealController {
 //    }
     public Long save(@RequestBody List<String> menus, @PathVariable UUID userid) throws IOException {
         User user = userService.findByUuid(userid);
+        List<Menu> menuList = me
         double kcal = 0, protein = 0, carbon = 0, fat = 0;
         for (int i = 0; i < menus.size(); i++) {
             kcal += menuService.findByMenuName(menus.get(i)).getMenu_Kcal();
