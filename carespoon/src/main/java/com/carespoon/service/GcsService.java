@@ -34,6 +34,6 @@ public class GcsService {
         try(WriteChannel writer = storage.writer(blobInfo)){
             writer.write(ByteBuffer.wrap(bytes, 0 , bytes.length));
         }
-        return  storage.get(bucketName).get(bucketName).getMediaLink();
+        return storage.get(bucketName).get(bucketName).getMediaLink();
     }
 }

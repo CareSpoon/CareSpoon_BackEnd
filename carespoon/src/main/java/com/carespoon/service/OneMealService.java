@@ -31,19 +31,17 @@ public class OneMealService {
     private UserService userService;
 
     private GcsService gcsService;
-    private MenuRepository menuRepository;
+    private MenuService menuService;
     private Storage storage;
-    @Value("${spring.cloud.gcp.storage.bucket}")
-    private String bucketName;
+
 
     public OneMealService(){
         this.storage = StorageOptions.getDefaultInstance().getService();
     }
     @Transactional
-    public OneMeal save(List<String> menuNames, MultipartFile image) throws IOException
+    public OneMeal save(UUID userId, List<String> menuNames, MultipartFile image) throws IOException
     {
-        List<Menu> menus = menuRepository.findByMenuName(menuNames);
-
+        List<Menu> menus = menuService.findByMenuName(menuNames);
 
         // 각 메뉴의 영양 정보를 총합
         double totalKcal = 0.0;
@@ -57,20 +55,14 @@ public class OneMealService {
             totalProtein += menu.getMenu_Protein();
         }
 
-        // OneMeal 객체 생성
-        OneMeal oneMeal = new OneMeal();
-        oneMeal.setMeal_Kcal(totalKcal);
-        oneMeal.setMeal_Carbon(totalCarbon);
-        oneMeal.setMeal_Fat(totalFat);
-        oneMeal.setMeal_Protein(totalProtein);
-        oneMeal.setEatDate(new Date());
+        User user = userService.findByUuid(userId);
 
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
-        oneMeal.setImageUrl(imageUrl);
+        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, new Date(), user);
 
         // OneMeal 객체 저장
-        return oneMealRepository.save(oneMeal);
+        return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
     }
 
 

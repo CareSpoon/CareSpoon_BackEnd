@@ -23,14 +23,15 @@ public class OneMealSaveRequestDto {
 
     private User user;
 
-    private MultipartFile image;
+    private String imageUrl;
 
     @Builder
-    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein,  Date eatDate, User user){
+    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, String imageUrl, Date eatDate, User user){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
+        this.imageUrl = imageUrl;
         this.eatDate = eatDate;
         this.user = user;
     }

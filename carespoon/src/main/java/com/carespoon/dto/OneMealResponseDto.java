@@ -25,5 +25,6 @@ public class OneMealResponseDto {
         this.meal_Carbon = entity.getMeal_Carbon();
         this.meal_Protein = entity.getMeal_Protein();
         this.eatDate = entity.getEatDate();
+        this.imageUrl = entity.getImageUrl();
     }
 }
