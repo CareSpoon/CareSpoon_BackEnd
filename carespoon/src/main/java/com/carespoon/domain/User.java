@@ -34,6 +34,7 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private UserInfo userInfo;
 
+    @Builder
     public User(String email, String name, int role){
         this.email = email;
         this.name = name;
