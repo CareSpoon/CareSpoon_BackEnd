@@ -1,24 +1,13 @@
 package com.carespoon.domain.user;
 
-import com.carespoon.Repository.UserInfoRepository;
-import com.carespoon.domain.UserInfo;
-import com.carespoon.dto.UserInfoSaveRequestDto;
-import com.carespoon.dto.UserInfoUpdateRequestDto;
-import org.assertj.core.api.AssertionsForClassTypes;
+import com.carespoon.UserInfo.repository.UserInfoRepository;
 import org.junit.After;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 import static java.lang.Long.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;

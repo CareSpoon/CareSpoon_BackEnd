@@ -1,9 +1,8 @@
 package com.carespoon.domain.oneMeal;
 
-import com.carespoon.Repository.OneMealRepository;
-import com.carespoon.domain.OneMeal;
-import com.carespoon.dto.OneMealSaveRequestDto;
-import net.bytebuddy.asm.Advice;
+import com.carespoon.OneMeal.repository.OneMealRepository;
+import com.carespoon.OneMeal.domain.OneMeal;
+import com.carespoon.OneMeal.dto.OneMealSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.http.ResponseEntity;
 
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 import static java.lang.Long.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;

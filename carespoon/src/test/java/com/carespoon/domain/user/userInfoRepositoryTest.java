@@ -1,16 +1,12 @@
 package com.carespoon.domain.user;
 
 
-import com.carespoon.Repository.UserInfoRepository;
-import com.carespoon.domain.UserInfo;
+import com.carespoon.UserInfo.repository.UserInfoRepository;
 import org.junit.After;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 import static java.lang.Long.valueOf;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
