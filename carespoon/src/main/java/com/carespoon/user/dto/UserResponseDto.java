@@ -1,7 +1,7 @@
 package com.carespoon.user.dto;
 
 import com.carespoon.user.domain.User;
-import com.carespoon.UserInfo.domain.UserInfo;
+import com.carespoon.userInfo.domain.UserInfo;
 
 import java.util.UUID;
 

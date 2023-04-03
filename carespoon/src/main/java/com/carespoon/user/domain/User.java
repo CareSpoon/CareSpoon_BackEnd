@@ -3,7 +3,7 @@ package com.carespoon.user.domain;
 
 import javax.persistence.*;
 
-import com.carespoon.UserInfo.domain.UserInfo;
+import com.carespoon.userInfo.domain.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

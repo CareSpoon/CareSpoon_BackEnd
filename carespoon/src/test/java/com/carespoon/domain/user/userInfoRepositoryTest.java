@@ -1,7 +1,7 @@
 package com.carespoon.domain.user;
 
 
-import com.carespoon.UserInfo.repository.UserInfoRepository;
+import com.carespoon.userInfo.repository.UserInfoRepository;
 import org.junit.After;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
