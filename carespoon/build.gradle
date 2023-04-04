@@ -34,18 +34,19 @@ dependencies {
     implementation 'com.querydsl:querydsl-jpa:5.0.0'
     implementation "com.querydsl:querydsl-apt:5.0.0"
     implementation 'com.google.firebase:firebase-admin:9.1.1'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
 
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2',
             'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
+
+    implementation 'org.springframework.cloud:spring-cloud-gcp-starter-storage'
+
     compile 'com.mysema.codegen:codegen:0.6.8'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
-
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter', version: '1.2.5.RELEASE'
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-storage', version: '1.2.5.RELEASE'
 
 
     testImplementation 'junit:junit:4.13.1'
@@ -61,7 +62,7 @@ tasks.named('test') {
 //Gradle에서 사용할 추가적인 task
 def querydslDir = "$buildDir/generated/querydsl"
 
-querydsl{
+querydsl {
     jpa = true
     querydslSourcesDir = querydslDir
 }
@@ -70,10 +71,10 @@ sourceSets {
     main.java.srcDir querydslDir
 }
 
-configurations{
+configurations {
     querydsl.extendsFrom compileClasspath
 }
 
-compileQuerydsl{
+compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
 }

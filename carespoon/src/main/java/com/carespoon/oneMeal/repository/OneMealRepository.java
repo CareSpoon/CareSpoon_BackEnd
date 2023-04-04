@@ -9,5 +9,4 @@ import java.util.List;
 
 public interface OneMealRepository extends JpaRepository<OneMeal, Long> , OneMealRepositoryCustom{
     List<OneMeal> findByUser(User user);
-
 }
