@@ -1,5 +1,6 @@
 package com.carespoon.user.service;
 
+import com.carespoon.oauth.dto.GoogleProfile;
 import com.carespoon.user.repository.UserRepository;
 import com.carespoon.user.domain.User;
 import com.carespoon.user.dto.UserSaveRequestDto;
@@ -16,8 +17,13 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public void save(UserSaveRequestDto requestDto){
-        userRepository.save(requestDto.toEntity());
+    public User save(GoogleProfile googleProfile){
+        User user = userRepository.findByEmail(googleProfile.getEmail());
+        if(user == null) {
+            user = googleProfile.toEntity();
+            userRepository.save(user);
+        }
+        return user;
     }
     public User findByUuid(UUID uuid) {
         User user = userRepository.findByUuid(uuid);

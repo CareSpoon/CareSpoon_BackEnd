@@ -1,9 +1,19 @@
 package com.carespoon.oauth.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.carespoon.oauth.dto.GoogleProfile;
+import com.carespoon.user.domain.User;
+import com.carespoon.user.service.UserService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 public class OauthController {
-
+    UserService userService;
+    @PostMapping("/login")
+    public String userSave(@RequestBody GoogleProfile googleProfile){
+        User user = userService.save(googleProfile);
+    }
 }
