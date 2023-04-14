@@ -12,8 +12,5 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class OauthController {
     UserService userService;
-    @PostMapping("/login")
-    public String userSave(@RequestBody GoogleProfile googleProfile){
-        User user = userService.save(googleProfile);
-    }
+
 }
