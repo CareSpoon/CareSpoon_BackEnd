@@ -1,7 +1,7 @@
 package com.carespoon.friendList.repository;
 
 import com.carespoon.friendList.domain.FriendList;
-import com.carespoon.domain.QFriendList;
+import com.carespoon.friendList.domain.QFriendList;
 import com.querydsl.core.Tuple;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;

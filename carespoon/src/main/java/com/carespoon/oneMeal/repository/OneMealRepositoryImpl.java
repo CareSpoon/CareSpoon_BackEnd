@@ -1,7 +1,7 @@
 package com.carespoon.oneMeal.repository;
 
 import com.carespoon.oneMeal.domain.OneMeal;
-import com.carespoon.domain.QOneMeal;
+import com.carespoon.oneMeal.domain.QOneMeal;
 import com.carespoon.user.domain.User;
 import com.querydsl.core.Tuple;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
