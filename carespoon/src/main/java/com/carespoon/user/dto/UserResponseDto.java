@@ -13,7 +13,7 @@ public class UserResponseDto {
 
     private UUID uuid;
 
-    private int role;
+    private String role;
 
     private UserInfo userInfo;
 

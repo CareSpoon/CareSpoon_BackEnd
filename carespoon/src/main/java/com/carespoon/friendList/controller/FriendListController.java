@@ -27,9 +27,9 @@ public class FriendListController {
     }
 
     @GetMapping("/friendsof")
-    public List<Tuple> getFriend(@RequestParam UUID uuid, @RequestParam int role){
+    public List<Tuple> getFriend(@RequestParam UUID uuid, @RequestParam String role){
         List<Tuple> friendsOf;
-        if(role == 0){
+        if(role.equals("senior")){
             friendsOf = friendListRepositoryCustom.findBySeniorId(uuid);
         }else{
             friendsOf = friendListRepositoryCustom.findByViewerId(uuid);

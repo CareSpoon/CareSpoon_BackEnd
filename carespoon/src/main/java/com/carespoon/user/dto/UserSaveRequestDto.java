@@ -16,10 +16,10 @@ public class UserSaveRequestDto {
 
     private UUID uuid;
 
-    private int role;
+    private String role;
 
     @Builder
-    public UserSaveRequestDto(String email, String name, int role){
+    public UserSaveRequestDto(String email, String name, String role){
         this.email = email;
         this.name = name;
         this.role = role;

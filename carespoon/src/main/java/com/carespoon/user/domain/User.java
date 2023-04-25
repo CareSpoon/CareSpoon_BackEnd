@@ -28,13 +28,13 @@ public class User {
     private UUID uuid;
 
     @Column(nullable = false)
-    private int role;
+    private String role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private UserInfo userInfo;
 
     @Builder
-    public User(String email, String name, int role){
+    public User(String email, String name, String role){
         this.email = email;
         this.name = name;
         this.role = role;
