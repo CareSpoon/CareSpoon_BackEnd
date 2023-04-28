@@ -14,12 +14,12 @@ import java.nio.ByteBuffer;
 
 @Service
 public class GcsService {
-    private static final String BUCKET_NAME = "carespoon";
-    private static final String FOLDER_NAME = "FoodPhotos";
+    private static final String BUCKET_NAME = "care-spoon-82c78.appspot.com";
+    private static final String FOLDER_NAME = "photos/";
 
     private final Storage storage;
 
-    @Value("${gcp.storage.bucket}")
+    @Value("${cloud.gcp.storage.credentials.location:.classpath}")
     private String bucketName;
 
     public GcsService(){

@@ -19,9 +19,11 @@ import java.util.Collections;
 @RestController
 public class AuthController {
 
-    @Value("${google.clientId}")
+    @Value("${spring.security.oauth2.client.registration.google.client-id}")
     private String googleClientId;
 
+    @Value("${spring.security.oauth2.client.registration.google.client-secret}")
+    private String googleClientSecret;
     UserService userService;
 
     @PostMapping("/login")
