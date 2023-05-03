@@ -16,18 +16,18 @@ import java.util.UUID;
 @RestController
 public class FriendListController {
 
-    private FriendListService friendListService;
+    private final  FriendListService friendListService;
 
     @Autowired
     @Qualifier("friendListRepositoryImpl")
-    private FriendListRepositoryCustom friendListRepositoryCustom;
-    @PostMapping("/friendlist")
-    public Long save(@RequestBody FriendListSaveDto friendListSaveDto){
-        return friendListService.save(friendListSaveDto);
+    private final FriendListRepositoryCustom friendListRepositoryCustom;
+    @RequestMapping(value = "/friendlist" , method = RequestMethod.POST, produces = "application/json")
+    public void save(@RequestBody FriendListSaveDto friendListSaveDto){
+        friendListService.save(friendListSaveDto);
     }
 
     @GetMapping("/friendsof")
-    public List<Tuple> getFriend(@RequestParam UUID uuid, @RequestParam String role){
+    public List<Tuple> getFriend(@RequestParam String uuid, @RequestParam String role){
         List<Tuple> friendsOf;
         if(role.equals("senior")){
             friendsOf = friendListRepositoryCustom.findBySeniorId(uuid);
@@ -38,7 +38,7 @@ public class FriendListController {
     }
 
     @DeleteMapping("/friendlist/remove")
-    public void friendRemove(@RequestParam UUID seniorId, @RequestParam UUID viewerId){
+    public void friendRemove(@RequestParam String seniorId, @RequestParam String viewerId){
         Long id = friendListRepositoryCustom.findIdByUUID(seniorId, viewerId);
         friendListService.deleteFriend(id);
     }

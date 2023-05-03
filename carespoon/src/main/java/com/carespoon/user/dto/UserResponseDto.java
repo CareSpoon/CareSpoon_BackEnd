@@ -11,7 +11,7 @@ public class UserResponseDto {
 
     private String name;
 
-    private UUID uuid;
+    private String uuid;
 
     private String role;
 

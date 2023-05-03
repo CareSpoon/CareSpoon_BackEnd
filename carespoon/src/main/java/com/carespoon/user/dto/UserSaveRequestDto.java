@@ -14,7 +14,7 @@ public class UserSaveRequestDto {
 
     private String name;
 
-    private UUID uuid;
+    private String uuid;
 
     private String role;
 
@@ -23,13 +23,14 @@ public class UserSaveRequestDto {
         this.email = email;
         this.name = name;
         this.role = role;
-        this.uuid = UUID.randomUUID();
+        this.uuid = UUID.randomUUID().toString();
     }
     public User toEntity() {
         return User.builder()
                 .email(email)
-                .name(name)
                 .role(role)
+                .name(name)
+                .uuid(uuid)
                 .build();
     }
 }

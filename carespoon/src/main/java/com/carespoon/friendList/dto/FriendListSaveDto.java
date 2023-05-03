@@ -1,37 +1,26 @@
 package com.carespoon.friendList.dto;
 
-import com.carespoon.friendList.domain.FriendList;
-import com.carespoon.user.service.UserService;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+@Getter
+@RequiredArgsConstructor
 public class FriendListSaveDto {
 
-    private Long id;
 
-    private UUID viewerId;
+    private String viewerId;
 
-    private String viewerName;
-
-    private UUID seniorId;
+    private String seniorId;
 
 
-    private String seniorName;
-
-    private UserService userService;
-    public FriendListSaveDto(UUID viewerId, UUID seniorId){
+    @Builder
+    public FriendListSaveDto(String viewerId, String seniorId){
         this.viewerId = viewerId;
         this.seniorId = seniorId;
-        this.seniorName = userService.findByUuid(seniorId).getName();
-        this.viewerName = userService.findByUuid(viewerId).getName();
     }
 
-    public FriendList toEntity(){
-        return FriendList.builder()
-                .viewerId(viewerId)
-                .seniorId(seniorId)
-                .seniorName(seniorName)
-                .viewerName(viewerName)
-                .build();
-    }
 }

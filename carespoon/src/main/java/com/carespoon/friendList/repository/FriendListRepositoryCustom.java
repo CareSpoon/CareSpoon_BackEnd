@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface FriendListRepositoryCustom {
-    List<Tuple> findBySeniorId(UUID uuid);
-    List<Tuple> findByViewerId(UUID uuid);
+    List<Tuple> findBySeniorId(String uuid);
+    List<Tuple> findByViewerId(String uuid);
 
-    Long findIdByUUID(UUID vieweruuid, UUID senioruuid);
+    Long findIdByUUID(String vieweruuid, String senioruuid);
 }

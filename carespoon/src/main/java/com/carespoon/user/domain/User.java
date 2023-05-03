@@ -16,6 +16,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String uuid;
 
     @Column(nullable = false)
     private String email;
@@ -23,22 +29,16 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Id
-    @Column(nullable = false)
-    private UUID uuid;
 
     @Column(nullable = false)
     private String role;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private UserInfo userInfo;
-
     @Builder
-    public User(String email, String name, String role){
+    public User(String email, String name, String role, String uuid){
         this.email = email;
         this.name = name;
         this.role = role;
-        this.uuid = UUID.randomUUID();
+        this.uuid = uuid;
     }
 
 }

@@ -16,7 +16,7 @@ public class FriendListRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public List<Tuple> findBySeniorId(UUID uuid) {
+    public List<Tuple> findBySeniorId(String uuid) {
         QFriendList friendList = QFriendList.friendList;
 
         return from(friendList)
@@ -27,7 +27,7 @@ public class FriendListRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public List<Tuple> findByViewerId(UUID uuid) {
+    public List<Tuple> findByViewerId(String uuid) {
         QFriendList friendList = QFriendList.friendList;
         return from(friendList)
                 .select(friendList.seniorName, friendList.seniorId)
@@ -36,7 +36,7 @@ public class FriendListRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public Long findIdByUUID(UUID vieweruuid, UUID senioruuid) {
+    public Long findIdByUUID(String vieweruuid, String senioruuid) {
         QFriendList friendList = QFriendList.friendList;
         return from(friendList)
                 .select(friendList.listId)

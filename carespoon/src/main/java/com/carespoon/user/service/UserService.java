@@ -13,14 +13,19 @@ import java.util.UUID;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public User save(String email, String name, String role){
         UserSaveRequestDto requestDto = new UserSaveRequestDto(email, name, role);
         return userRepository.save(requestDto.toEntity());
     }
-    public User findByUuid(UUID uuid) {
-        User user = userRepository.findByUuid(uuid);
+    public User findByUuid(String userId) {
+        User user = userRepository.findUserByUuid(userId);
+        return user;
+    }
+
+    public User findById(Long id){
+        User user = userRepository.findUserById(id);
         return user;
     }
 }

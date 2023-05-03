@@ -17,20 +17,20 @@ public class FriendList {
     private Long listId;
 
     @Column
-    private UUID viewerId;
+    private String viewerId;
 
     @Column
     private String viewerName;
 
     @Column
-    private UUID seniorId;
+    private String seniorId;
 
 
     @Column
     private String seniorName;
 
     @Builder
-    public FriendList(UUID viewerId, UUID seniorId, String seniorName, String viewerName){
+    public FriendList(String viewerId, String seniorId, String seniorName, String viewerName){
         this.viewerId = viewerId;
         this.seniorId = seniorId;
         this.seniorName = seniorName;

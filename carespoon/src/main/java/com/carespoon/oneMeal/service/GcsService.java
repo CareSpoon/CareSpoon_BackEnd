@@ -14,12 +14,12 @@ import java.nio.ByteBuffer;
 
 @Service
 public class GcsService {
-    private static final String BUCKET_NAME = "care-spoon-82c78.appspot.com";
-    private static final String FOLDER_NAME = "photos/";
+    private static final String BUCKET_NAME = "care-spoon/";
+    private static final String FOLDER_NAME = "photos";
 
     private final Storage storage;
 
-    @Value("${cloud.gcp.storage.credentials.location:.classpath}")
+    @Value("${spring.cloud.gcp.storage.bucket}")
     private String bucketName;
 
     public GcsService(){
@@ -28,7 +28,7 @@ public class GcsService {
 
     public String uploadImage(MultipartFile file) throws IOException{
         String fileName = file.getOriginalFilename();
-        BlobId blobId = BlobId.of(BUCKET_NAME, FOLDER_NAME + fileName);
+        BlobId blobId = BlobId.of(bucketName, FOLDER_NAME + fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(file.getContentType()).build();
         byte[] bytes = file.getBytes();
         try(WriteChannel writer = storage.writer(blobInfo)){

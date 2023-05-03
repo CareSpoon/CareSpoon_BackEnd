@@ -6,12 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 
 @Getter
 @NoArgsConstructor
 public class UserInfoSaveRequestDto {
 
-    private User user;
+    private String userId;
 
     private double height;
 
@@ -24,9 +26,10 @@ public class UserInfoSaveRequestDto {
     private int sex;
 
     @Builder
-    public UserInfoSaveRequestDto(User user, int age, int sex, double height, double weight){
-        this.user = user;
-        this.age = age;
+    public UserInfoSaveRequestDto(String userId, String birth, int sex, double height, double weight){
+        LocalDate now = LocalDate.now();
+        this.userId = userId;
+        this.age = now.getYear() - Integer.valueOf(birth);
         this.sex = sex;
         this.height = height;
         this.weight = weight;
@@ -39,13 +42,5 @@ public class UserInfoSaveRequestDto {
         }
     }
 
-    public UserInfo toEntity(){
-        return UserInfo.builder()
-                .user(user)
-                .age(age)
-                .sex(sex)
-                .weight(weight)
-                .height(height)
-                .build();
-    }
+
 }

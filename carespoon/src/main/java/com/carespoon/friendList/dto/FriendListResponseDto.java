@@ -7,11 +7,11 @@ import java.util.UUID;
 public class FriendListResponseDto {
     private Long id;
 
-    private UUID viewerId;
+    private String viewerId;
 
     private String viewerName;
 
-    private UUID seniorId;
+    private String seniorId;
 
     private String seniorName;
 

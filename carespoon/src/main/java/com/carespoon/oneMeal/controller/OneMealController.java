@@ -35,18 +35,18 @@ public class OneMealController {
     private UserService userService;
 
     @PostMapping("/onemeal")
-    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestBody UUID userId,@RequestBody List<String> menuNames, @RequestBody MultipartFile image) throws IOException{
+    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestBody String userId,@RequestBody List<String> menuNames, @RequestBody MultipartFile image) throws IOException{
         OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.save(userId, menuNames, image));
         return ResponseEntity.ok(oneMeal);
     }
 
-    private GcsService gcsService;
+    private final GcsService gcsService;
     @PostMapping("/imagetest")
     public String addTest(@RequestBody MultipartFile image) throws IOException{
         return gcsService.uploadImage(image);
     }
     @GetMapping("/dailynurition/{userId}")
-    public List<Tuple> getDaily(@PathVariable UUID userId, @RequestParam String date) throws ParseException {
+    public List<Tuple> getDaily(@PathVariable String userId, @RequestParam String date) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date listDate = dateFormat.parse(date);
         User user = userService.findByUuid(userId);
@@ -55,7 +55,7 @@ public class OneMealController {
     }
 
     @GetMapping("/monthlynutrition/{userId}")
-    public List<Tuple> getMonthly(@PathVariable UUID userId, @RequestParam String month) {
+    public List<Tuple> getMonthly(@PathVariable String userId, @RequestParam String month) {
         YearMonth yearMonth = YearMonth.parse(month);
         User user = userService.findByUuid(userId);
         List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(user, yearMonth);
@@ -63,7 +63,7 @@ public class OneMealController {
     }
 
     @GetMapping("/onemeal/{userId}")
-    public List<OneMealResponseDto> findById(@PathVariable UUID userId) {
+    public List<OneMealResponseDto> findById(@PathVariable String userId) {
         return oneMealService.findByUser(userId);
     }
 

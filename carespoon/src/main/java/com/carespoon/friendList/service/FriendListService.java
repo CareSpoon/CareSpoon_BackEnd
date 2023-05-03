@@ -3,22 +3,33 @@ package com.carespoon.friendList.service;
 import com.carespoon.friendList.repository.FriendListRepository;
 import com.carespoon.friendList.domain.FriendList;
 import com.carespoon.friendList.dto.FriendListSaveDto;
+import com.carespoon.user.repository.UserRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
 public class FriendListService {
 
     @Autowired
-    private FriendListRepository friendListRepository;
+    private final FriendListRepository friendListRepository;
+
+    @Autowired
+    private final UserRepository userRepository;
 
     @Transactional
-    public Long save(FriendListSaveDto friendListSaveDto){
-        return friendListRepository.save(friendListSaveDto.toEntity()).getListId();
+    public void save(FriendListSaveDto friendListSaveDto){
+        String seniorId = friendListSaveDto.getSeniorId();
+        String viewerId = friendListSaveDto.getViewerId();
+        String seniorName= userRepository.findUserByUuid(friendListSaveDto.getSeniorId()).getName();
+        String viewerName = userRepository.findUserByUuid(friendListSaveDto.getViewerId()).getName();
+        FriendList friendList = new FriendList(viewerId, seniorId, seniorName,viewerName);
+        friendListRepository.save(friendList);
     }
 
     @Transactional

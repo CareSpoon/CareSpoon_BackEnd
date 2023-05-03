@@ -1,5 +1,6 @@
 package com.carespoon.userInfo.controller;
 
+import com.carespoon.userInfo.domain.UserInfo;
 import com.carespoon.userInfo.dto.UserInfoResponseDto;
 import com.carespoon.userInfo.dto.UserInfoSaveRequestDto;
 import com.carespoon.userInfo.dto.UserInfoUpdateRequestDto;
@@ -19,17 +20,17 @@ public class UserInfoController {
     private UserService userService;
 
     @PostMapping("/userinfo")
-    public void save(@RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
-        userInfoService.save(userInfoSaveRequestDto);
+    public UserInfo save(@RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
+        return userInfoService.save(userInfoSaveRequestDto);
     }
 
     @GetMapping("/userinfo/{userId}")
-    public UserInfoResponseDto findByUser(@PathVariable UUID userId){
+    public UserInfoResponseDto findByUser(@PathVariable String userId){
         return userInfoService.findByUser(userId);
     }
 
     @PutMapping("/userinfo/update/{userId}")
-    public void update(@PathVariable UUID userId, @RequestBody UserInfoUpdateRequestDto userInfoUpdateRequestDto){
+    public void update(@PathVariable String userId, @RequestBody UserInfoUpdateRequestDto userInfoUpdateRequestDto){
         userInfoService.update(userId, userInfoUpdateRequestDto);
     }
 }

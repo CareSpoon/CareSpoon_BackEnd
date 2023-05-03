@@ -9,9 +9,12 @@ import com.carespoon.oneMeal.dto.OneMealResponseDto;
 import com.carespoon.oneMeal.dto.OneMealSaveRequestDto;
 import javax.transaction.Transactional;
 
+import com.carespoon.user.repository.UserRepository;
 import com.carespoon.user.service.UserService;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,8 +29,7 @@ import java.util.List;
 public class OneMealService {
     private OneMealRepository oneMealRepository;
 
-    private UserService userService;
-
+    private UserRepository userRepository;
     private GcsService gcsService;
     private MenuService menuService;
     private Storage storage;
@@ -37,7 +39,7 @@ public class OneMealService {
         this.storage = StorageOptions.getDefaultInstance().getService();
     }
     @Transactional
-    public OneMeal save(UUID userId, List<String> menuNames, MultipartFile image) throws IOException
+    public OneMeal save(String userId, List<String> menuNames, MultipartFile image) throws IOException
     {
         List<Menu> menus = menuService.findByMenuName(menuNames);
 
@@ -53,7 +55,7 @@ public class OneMealService {
             totalProtein += menu.getMenu_Protein();
         }
 
-        User user = userService.findByUuid(userId);
+        User user = userRepository.findUserByUuid(userId);
 
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
@@ -64,8 +66,8 @@ public class OneMealService {
     }
 
 
-    public List<OneMealResponseDto> findByUser(UUID userId){
-        User user = userService.findByUuid(userId);
+    public List<OneMealResponseDto> findByUser(String userId){
+        User user = userRepository.findUserByUuid(userId);
         List<OneMeal> entity = oneMealRepository.findByUser(user);
         List<OneMealResponseDto> result = new ArrayList<OneMealResponseDto>(entity.size());
         for(int i = 0; i< entity.size(); i++){
