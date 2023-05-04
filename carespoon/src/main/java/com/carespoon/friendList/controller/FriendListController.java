@@ -1,5 +1,6 @@
 package com.carespoon.friendList.controller;
 
+import com.carespoon.friendList.dto.FriendListResponseDto;
 import com.carespoon.friendList.repository.FriendListRepositoryCustom;
 import com.carespoon.friendList.dto.FriendListSaveDto;
 import com.carespoon.friendList.service.FriendListService;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @RestController
 public class FriendListController {
 
-    private final  FriendListService friendListService;
+    private final FriendListService friendListService;
 
     @Autowired
     @Qualifier("friendListRepositoryImpl")
@@ -26,15 +27,14 @@ public class FriendListController {
         friendListService.save(friendListSaveDto);
     }
 
-    @GetMapping("/friendsof")
-    public List<Tuple> getFriend(@RequestParam String uuid, @RequestParam String role){
-        List<Tuple> friendsOf;
-        if(role.equals("senior")){
-            friendsOf = friendListRepositoryCustom.findBySeniorId(uuid);
-        }else{
-            friendsOf = friendListRepositoryCustom.findByViewerId(uuid);
-        }
-        return friendsOf;
+    @GetMapping("/friendsof/senior/{uuid}")
+    public List<String> getSeniorFriend(@PathVariable String uuid){
+        return friendListRepositoryCustom.findBySeniorId(uuid);
+    }
+
+    @GetMapping("/friendsof/viewer/{uuid}")
+    public List<String> getViewerFriend(@PathVariable String uuid){
+        return friendListRepositoryCustom.findByViewerId(uuid);
     }
 
     @DeleteMapping("/friendlist/remove")
