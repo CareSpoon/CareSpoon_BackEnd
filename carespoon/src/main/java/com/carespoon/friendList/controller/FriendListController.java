@@ -37,9 +37,9 @@ public class FriendListController {
         return friendListRepositoryCustom.findByViewerId(uuid);
     }
 
-    @DeleteMapping("/friendlist/remove")
-    public void friendRemove(@RequestParam String seniorId, @RequestParam String viewerId){
-        Long id = friendListRepositoryCustom.findIdByUUID(seniorId, viewerId);
-        friendListService.deleteFriend(id);
+    @DeleteMapping("/friendlist/remove/{seniorId}/{viewerId}")
+    public void friendRemove(@PathVariable String seniorId, @PathVariable String viewerId){
+        List<Long> id = friendListRepositoryCustom.findIdByUUID(seniorId, viewerId);
+        friendListService.deleteFriend(id.get(0));
     }
 }

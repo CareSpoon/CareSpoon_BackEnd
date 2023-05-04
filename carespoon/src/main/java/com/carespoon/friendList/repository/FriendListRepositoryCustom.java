@@ -10,5 +10,5 @@ public interface FriendListRepositoryCustom {
     List<String> findBySeniorId(String uuid);
     List<String> findByViewerId(String uuid);
 
-    Long findIdByUUID(String vieweruuid, String senioruuid);
+    List<Long> findIdByUUID(String vieweruuid, String senioruuid);
 }

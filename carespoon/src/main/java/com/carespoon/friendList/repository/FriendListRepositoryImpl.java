@@ -37,11 +37,11 @@ public class FriendListRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public Long findIdByUUID(String vieweruuid, String senioruuid) {
+    public List<Long> findIdByUUID(String senioruuid,String vieweruuid) {
         QFriendList friendList = QFriendList.friendList;
         return from(friendList)
                 .select(friendList.listId)
                 .where(friendList.seniorId.eq(senioruuid).and(friendList.viewerId.eq(vieweruuid)))
-                .fetch().get(0);
+                .fetch();
     }
 }
