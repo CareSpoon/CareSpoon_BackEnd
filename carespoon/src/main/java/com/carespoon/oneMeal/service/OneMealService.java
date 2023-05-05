@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -26,21 +29,15 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class OneMealService {
-    private OneMealRepository oneMealRepository;
+    private final OneMealRepository oneMealRepository;
 
-    private UserRepository userRepository;
-    private GcsService gcsService;
-    private MenuService menuService;
-    private Storage storage;
-
-
-    public OneMealService(){
-        this.storage = StorageOptions.getDefaultInstance().getService();
-    }
+    private final UserRepository userRepository;
+    private final GcsService gcsService;
+    private final MenuService menuService;
     @Transactional
-    public OneMeal save(String userId, List<String> menuNames, MultipartFile image) throws IOException
-    {
+    public OneMeal save(String userId, List<String> menuNames, MultipartFile image) throws IOException, ParseException {
         List<Menu> menus = menuService.findByMenuName(menuNames);
 
         // 각 메뉴의 영양 정보를 총합
@@ -56,10 +53,13 @@ public class OneMealService {
         }
 
         User user = userRepository.findUserByUuid(userId);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = new Date().toString();
+        Date listDate = dateFormat.parse(date);
 
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
-        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, new Date(), user);
+        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, listDate, user);
 
         // OneMeal 객체 저장
         return oneMealRepository.save(oneMealSaveRequestDto.toEntity());

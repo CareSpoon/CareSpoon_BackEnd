@@ -1,39 +1,45 @@
 package com.carespoon.oneMeal.service;
 
 import com.google.api.client.util.Value;
+import com.google.auth.Credentials;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.WriteChannel;
-import com.google.cloud.storage.BlobId;
-import com.google.cloud.storage.BlobInfo;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+import com.google.cloud.storage.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.UUID;
 
 @Service
 public class GcsService {
-    private static final String BUCKET_NAME = "care-spoon/";
-    private static final String FOLDER_NAME = "photos";
+    private static final String BUCKET_NAME = "carespoon-storage";
 
     private final Storage storage;
 
-    @Value("${spring.cloud.gcp.storage.bucket}")
-    private String bucketName;
+    private String key
+            = "/Applications/Develop/CareSpoon_BackEnd/carespoon/build/resources/main/google_storage/care-spoon-82c78-957ade423885.json";
 
-    public GcsService(){
-        storage = StorageOptions.getDefaultInstance().getService();
+    Credentials credentials = GoogleCredentials.fromStream(new FileInputStream(key));
+    public GcsService() throws IOException {
+        storage = StorageOptions.newBuilder().setCredentials(credentials).setProjectId("care-spoon-82c78").build().getService();
     }
 
-    public String uploadImage(MultipartFile file) throws IOException{
-        String fileName = file.getOriginalFilename();
-        BlobId blobId = BlobId.of(bucketName, FOLDER_NAME + fileName);
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(file.getContentType()).build();
+    public String uploadImage(MultipartFile file) throws IOException {
+        String fileName = UUID.randomUUID().toString();
+        String fileType = file.getContentType();
+        BlobInfo blobInfo = storage.create(
+                BlobInfo.newBuilder(BUCKET_NAME, fileName)
+                        .setContentType(fileType)
+                        .build(),file.getInputStream());
         byte[] bytes = file.getBytes();
         try(WriteChannel writer = storage.writer(blobInfo)){
             writer.write(ByteBuffer.wrap(bytes, 0 , bytes.length));
         }
-        return storage.get(bucketName).get(bucketName).getMediaLink();
+        return fileName;
     }
 }

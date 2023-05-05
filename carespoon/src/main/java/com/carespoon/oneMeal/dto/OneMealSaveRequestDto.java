@@ -30,7 +30,7 @@ public class OneMealSaveRequestDto {
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
-        this.imageUrl = imageUrl;
+        this.imageUrl = "https://storage.googleapis.com/carespoon-storage/"+imageUrl;
         this.eatDate = eatDate;
         this.user = user;
     }
@@ -42,6 +42,7 @@ public class OneMealSaveRequestDto {
                 .meal_Carbon(meal_Carbon)
                 .meal_Kcal(meal_Kcal)
                 .meal_Fat(meal_Fat)
+                .imageUrl(imageUrl)
                 .eatDate(eatDate)
                 .user(user)
                 .build();

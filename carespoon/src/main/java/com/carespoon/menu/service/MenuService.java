@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MenuService {
 
-    MenuRepository menuRepository;
+    private final MenuRepository menuRepository;
     public List<Menu> findByMenuName(List<String> name){
         List<Menu> menu = new ArrayList<>(name.size());
         for(int i = 0; i<name.size(); i++){

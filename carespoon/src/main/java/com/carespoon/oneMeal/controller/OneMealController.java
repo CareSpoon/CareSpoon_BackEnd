@@ -1,5 +1,6 @@
 package com.carespoon.oneMeal.controller;
 
+import com.carespoon.oneMeal.dto.OneMealRequestDto;
 import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
 import com.carespoon.oneMeal.service.GcsService;
 import com.carespoon.user.domain.User;
@@ -26,27 +27,29 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class OneMealController {
-    private OneMealService oneMealService;
+    private final OneMealService oneMealService;
 
     @Autowired
     @Qualifier("oneMealRepositoryImpl")
     private OneMealRepositoryCustom oneMealRepositoryCustom;
 
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/onemeal")
-    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestBody String userId,@RequestBody List<String> menuNames, @RequestBody MultipartFile image) throws IOException{
+    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestParam String userId, @RequestParam List<String> menuNames, @RequestBody MultipartFile image) throws IOException, ParseException {
+        System.out.println(menuNames);
         OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.save(userId, menuNames, image));
         return ResponseEntity.ok(oneMeal);
     }
 
-    private final GcsService gcsService;
-    @PostMapping("/imagetest")
-    public String addTest(@RequestBody MultipartFile image) throws IOException{
-        return gcsService.uploadImage(image);
-    }
-    @GetMapping("/dailynurition/{userId}")
-    public List<Tuple> getDaily(@PathVariable String userId, @RequestParam String date) throws ParseException {
+    //사진 업로드 테스트 코드
+//    private final GcsService gcsService;
+//    @PostMapping("/imagetest")
+//    public String addTest(@RequestBody MultipartFile file) throws IOException{
+//        return gcsService.uploadImage(file);
+//    }
+    @GetMapping("/dailynurition/{userId}/{date}")
+    public List<Tuple> getDaily(@PathVariable String userId, @PathVariable String date) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date listDate = dateFormat.parse(date);
         User user = userService.findByUuid(userId);
