@@ -7,6 +7,7 @@ import com.carespoon.oneMeal.domain.OneMeal;
 import com.carespoon.user.domain.User;
 import com.carespoon.oneMeal.dto.OneMealResponseDto;
 import com.carespoon.oneMeal.dto.OneMealSaveRequestDto;
+
 import javax.transaction.Transactional;
 
 import com.carespoon.user.repository.UserRepository;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -36,6 +38,7 @@ public class OneMealService {
     private final UserRepository userRepository;
     private final GcsService gcsService;
     private final MenuService menuService;
+
     @Transactional
     public OneMeal save(String userId, List<String> menuNames, MultipartFile image) throws IOException, ParseException {
         List<Menu> menus = menuService.findByMenuName(menuNames);
@@ -54,26 +57,38 @@ public class OneMealService {
 
         User user = userRepository.findUserByUuid(userId);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = new Date().toString();
-        Date listDate = dateFormat.parse(date);
+        Date dateOfString = new Date();
+        String eatDate = dateFormat.format(dateOfString).toString();
+        DateFormat formatMonth = new SimpleDateFormat("yyyy-MM");
+        String eatMonth = formatMonth.format(dateOfString).toString();
 
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
-        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, listDate, user);
+        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, eatDate,eatMonth, user);
 
         // OneMeal 객체 저장
         return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
     }
 
 
-    public List<OneMealResponseDto> findByUser(String userId){
+    public List<OneMealResponseDto> findByUser(String userId) {
         User user = userRepository.findUserByUuid(userId);
         List<OneMeal> entity = oneMealRepository.findByUser(user);
         List<OneMealResponseDto> result = new ArrayList<OneMealResponseDto>(entity.size());
-        for(int i = 0; i< entity.size(); i++){
+        for (int i = 0; i < entity.size(); i++) {
             result.add(new OneMealResponseDto(entity.get(i)));
         }
         return result;
     }
+
+//    public List<OneMealResponseDto> findByUserandDate(String userId, String eatDate){
+//        User user = userRepository.findUserByUuid(userId);
+//        List<OneMeal> entity = oneMealRepository.findByUserandDate(user, eatDate);
+//        List<OneMealResponseDto> result = new ArrayList<OneMealResponseDto>(entity.size());
+//        for (int i = 0; i < entity.size(); i++) {
+//            result.add(new OneMealResponseDto(entity.get(i)));
+//        }
+//        return result;
+//    }
 
 }

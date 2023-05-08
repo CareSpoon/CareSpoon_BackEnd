@@ -35,10 +35,11 @@ public class OneMeal{
     private double meal_Protein;
 
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date eatDate;
+    @Column
+    private String eatDate;
+
+    @Column
+    private String eatMonth;
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -46,12 +47,13 @@ public class OneMeal{
 
     private String imageUrl;
     @Builder
-    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, Date eatDate, User user, String imageUrl) {
+    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, String eatDate, String eatMonth, User user, String imageUrl) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
         this.eatDate = eatDate;
+        this.eatMonth = eatMonth;
         this.user = user;
         this.imageUrl = imageUrl;
     }

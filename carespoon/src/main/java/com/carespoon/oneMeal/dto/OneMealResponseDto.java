@@ -1,6 +1,7 @@
 package com.carespoon.oneMeal.dto;
 
 import com.carespoon.oneMeal.domain.OneMeal;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 
 import java.util.Date;
@@ -14,8 +15,8 @@ public class OneMealResponseDto {
     private double meal_Fat;
     private double meal_Protein;
 
-    private Date eatDate;
-
+    private String eatDate;
+    private String eatMonth;
     private String imageUrl;
 
     public OneMealResponseDto(OneMeal entity){
@@ -25,6 +26,8 @@ public class OneMealResponseDto {
         this.meal_Carbon = entity.getMeal_Carbon();
         this.meal_Protein = entity.getMeal_Protein();
         this.eatDate = entity.getEatDate();
+        this.eatMonth =entity.getEatMonth();
         this.imageUrl = entity.getImageUrl();
     }
+
 }

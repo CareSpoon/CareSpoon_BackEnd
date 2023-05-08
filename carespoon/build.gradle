@@ -1,3 +1,8 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.6.3'
@@ -31,8 +36,8 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework:spring-core:5.3.15'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'com.querydsl:querydsl-jpa:5.0.0'
-    implementation "com.querydsl:querydsl-apt:5.0.0"
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
     implementation group: 'com.google.firebase', name: 'firebase-admin', version: '6.8.1'
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
     implementation 'mysql:mysql-connector-java:8.0.31'

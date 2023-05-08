@@ -1,10 +1,9 @@
 package com.carespoon.oneMeal.controller;
 
-import com.carespoon.oneMeal.dto.OneMealRequestDto;
+import com.carespoon.oneMeal.dto.*;
 import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
 import com.carespoon.oneMeal.service.GcsService;
 import com.carespoon.user.domain.User;
-import com.carespoon.oneMeal.dto.OneMealResponseDto;
 import com.carespoon.oneMeal.service.OneMealService;
 import com.carespoon.user.service.UserService;
 import com.querydsl.core.Tuple;
@@ -48,21 +47,25 @@ public class OneMealController {
 //    public String addTest(@RequestBody MultipartFile file) throws IOException{
 //        return gcsService.uploadImage(file);
 //    }
-    @GetMapping("/dailynurition/{userId}/{date}")
-    public List<Tuple> getDaily(@PathVariable String userId, @PathVariable String date) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date listDate = dateFormat.parse(date);
+    @GetMapping("/dailystatistics/{userId}/{date}")
+    public DailyMealResponseDto getDailyStatistics(@PathVariable String userId, @PathVariable String date) {
         User user = userService.findByUuid(userId);
-        List<Tuple> dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(user, listDate);
+        DailyMealResponseDto dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(user, date).get(0);
         return dailyNutrition;
     }
 
-    @GetMapping("/monthlynutrition/{userId}")
-    public List<Tuple> getMonthly(@PathVariable String userId, @RequestParam String month) {
-        YearMonth yearMonth = YearMonth.parse(month);
+    @GetMapping("/monthlystatistics/{userId}/{month}")
+    public MonthlyMealResponseDto getMonthlyStatistics(@PathVariable String userId, @PathVariable String month) {
         User user = userService.findByUuid(userId);
-        List<Tuple> monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(user, yearMonth);
+        MonthlyMealResponseDto monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(user, month).get(0);
         return monthlyNutrition;
+    }
+
+    @GetMapping("/dailymeals/{userId}/{date}")
+    public List<MealResponseDto> getDaymeals(@PathVariable String userId, @PathVariable String date) {
+        User user = userService.findByUuid(userId);
+        List<MealResponseDto> results = oneMealRepositoryCustom.findMealsByDate(user, date);
+        return results;
     }
 
     @GetMapping("/onemeal/{userId}")

@@ -1,6 +1,7 @@
 package com.carespoon.oneMeal.repository;
 
 import com.carespoon.oneMeal.domain.OneMeal;
+import com.carespoon.oneMeal.dto.OneMealResponseDto;
 import com.carespoon.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
