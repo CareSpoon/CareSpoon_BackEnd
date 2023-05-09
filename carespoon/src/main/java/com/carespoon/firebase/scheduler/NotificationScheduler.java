@@ -29,7 +29,7 @@ public class NotificationScheduler {
     private FirebaseMessaging instance;
     @PostConstruct
     public void firebaseSetting() throws IOException {
-        GoogleCredentials googleCredentials = GoogleCredentials.fromStream(new FileInputStream("/Applications/Develop/CareSpoon_BackEnd/carespoon/src/main/resources/firebase/care-spoon-82c78-firebase-adminsdk-c2nf0-14d8922178.json"))
+        GoogleCredentials googleCredentials = GoogleCredentials.fromStream(new FileInputStream("/home/joyrooom15/CareSpoon_BackEnd/carespoon/build/resources/main/firebase/care-spoon-82c78-firebase-adminsdk-c2nf0-14d8922178.json"))
                 .createScoped((Arrays.asList(fireBaseCreateScoped)));
         FirebaseOptions secondaryAppConfig = FirebaseOptions.builder()
                 .setCredentials(googleCredentials)
