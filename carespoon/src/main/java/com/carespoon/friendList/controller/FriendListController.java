@@ -1,5 +1,6 @@
 package com.carespoon.friendList.controller;
 
+import com.carespoon.friendList.dto.FriendListGetResponseDto;
 import com.carespoon.friendList.dto.FriendListResponseDto;
 import com.carespoon.friendList.repository.FriendListRepositoryCustom;
 import com.carespoon.friendList.dto.FriendListSaveDto;
@@ -28,12 +29,12 @@ public class FriendListController {
     }
 
     @GetMapping("/friendsof/senior/{uuid}")
-    public List<String> getSeniorFriend(@PathVariable String uuid){
+    public List<FriendListGetResponseDto> getSeniorFriend(@PathVariable String uuid){
         return friendListRepositoryCustom.findBySeniorId(uuid);
     }
 
     @GetMapping("/friendsof/viewer/{uuid}")
-    public List<String> getViewerFriend(@PathVariable String uuid){
+    public List<FriendListGetResponseDto> getViewerFriend(@PathVariable String uuid){
         return friendListRepositoryCustom.findByViewerId(uuid);
     }
 

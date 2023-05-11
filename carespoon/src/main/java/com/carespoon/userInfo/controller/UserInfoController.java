@@ -4,6 +4,7 @@ import com.carespoon.userInfo.domain.UserInfo;
 import com.carespoon.userInfo.dto.UserInfoResponseDto;
 import com.carespoon.userInfo.dto.UserInfoSaveRequestDto;
 import com.carespoon.userInfo.dto.UserInfoUpdateRequestDto;
+import com.carespoon.userInfo.dto.UserRequestDto;
 import com.carespoon.userInfo.service.UserInfoService;
 import com.carespoon.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class UserInfoController {
     private UserService userService;
 
     @PostMapping("/userinfo")
-    public UserInfo save(@RequestBody UserInfoSaveRequestDto userInfoSaveRequestDto){
+    public UserInfo save(@RequestBody UserRequestDto userInfoSaveRequestDto){
         return userInfoService.save(userInfoSaveRequestDto);
     }
 
