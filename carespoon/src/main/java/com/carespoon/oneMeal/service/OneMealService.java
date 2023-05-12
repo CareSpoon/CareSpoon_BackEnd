@@ -86,6 +86,7 @@ public class OneMealService {
         body.add("filename", image.getOriginalFilename());
         Mono<String> result = webClient
                 .post()
+                .uri("")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
                 .body(BodyInserters.fromMultipartData(body))
                 .retrieve()
