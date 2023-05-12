@@ -22,7 +22,7 @@ public class GcsService {
     private final Storage storage;
 
     private String key
-            = "/home/joyrooom15/CareSpoon_BackEnd/carespoon/build/resources/main/google_storage/care-spoon-82c78-957ade423885.json";
+            = "/Applications/Develop/CareSpoon_BackEnd/carespoon/src/main/resources/google_storage/care-spoon-82c78-957ade423885.json";
 
     Credentials credentials = GoogleCredentials.fromStream(new FileInputStream(key));
     public GcsService() throws IOException {

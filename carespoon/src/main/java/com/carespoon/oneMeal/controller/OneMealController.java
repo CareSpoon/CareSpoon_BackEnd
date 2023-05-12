@@ -36,11 +36,15 @@ public class OneMealController {
 
     @PostMapping("/onemeal")
     public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestParam String userId, @RequestParam List<String> menuNames, @RequestBody MultipartFile image) throws IOException, ParseException {
-        System.out.println(menuNames);
         OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.save(userId, menuNames, image));
         return ResponseEntity.ok(oneMeal);
     }
 
+    @PostMapping("/onemealTest")
+    public ResponseEntity<OneMealResponseDto> saveTest(@RequestParam String userId, @RequestParam MultipartFile image) throws IOException{
+        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image));
+        return ResponseEntity.ok(oneMeal);
+    }
     //사진 업로드 테스트 코드
 //    private final GcsService gcsService;
 //    @PostMapping("/imagetest")
