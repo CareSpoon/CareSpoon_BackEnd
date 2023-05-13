@@ -2,7 +2,6 @@ package com.carespoon.userInfo.controller;
 
 import com.carespoon.userInfo.domain.UserInfo;
 import com.carespoon.userInfo.dto.UserInfoResponseDto;
-import com.carespoon.userInfo.dto.UserInfoSaveRequestDto;
 import com.carespoon.userInfo.dto.UserInfoUpdateRequestDto;
 import com.carespoon.userInfo.dto.UserRequestDto;
 import com.carespoon.userInfo.service.UserInfoService;
@@ -10,7 +9,6 @@ import com.carespoon.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController

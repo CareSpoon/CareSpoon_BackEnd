@@ -5,7 +5,6 @@ import com.carespoon.oneMeal.domain.QOneMeal;
 import com.carespoon.oneMeal.dto.*;
 import com.carespoon.user.domain.User;
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 

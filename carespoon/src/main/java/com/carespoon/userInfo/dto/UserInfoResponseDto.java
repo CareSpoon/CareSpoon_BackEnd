@@ -1,6 +1,5 @@
 package com.carespoon.userInfo.dto;
 
-import com.carespoon.user.domain.User;
 import com.carespoon.userInfo.domain.UserInfo;
 import lombok.Getter;
 

@@ -1,11 +1,9 @@
 package com.carespoon.friendList.controller;
 
 import com.carespoon.friendList.dto.FriendListGetResponseDto;
-import com.carespoon.friendList.dto.FriendListResponseDto;
 import com.carespoon.friendList.repository.FriendListRepositoryCustom;
 import com.carespoon.friendList.dto.FriendListSaveDto;
 import com.carespoon.friendList.service.FriendListService;
-import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

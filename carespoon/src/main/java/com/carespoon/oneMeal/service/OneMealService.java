@@ -11,10 +11,6 @@ import com.carespoon.oneMeal.dto.OneMealSaveRequestDto;
 import javax.transaction.Transactional;
 
 import com.carespoon.user.repository.UserRepository;
-import com.carespoon.user.service.UserService;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -31,10 +27,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
 import java.util.List;
 
 

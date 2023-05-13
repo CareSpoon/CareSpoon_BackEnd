@@ -2,7 +2,6 @@ package com.carespoon.menu.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Getter

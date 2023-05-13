@@ -1,10 +1,8 @@
 package com.carespoon.oneMeal.dto;
 
 import com.carespoon.oneMeal.domain.OneMeal;
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 
-import java.util.Date;
 
 @Getter
 public class OneMealResponseDto {

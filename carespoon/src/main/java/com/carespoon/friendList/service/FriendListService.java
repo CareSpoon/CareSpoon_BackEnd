@@ -4,13 +4,10 @@ import com.carespoon.friendList.repository.FriendListRepository;
 import com.carespoon.friendList.domain.FriendList;
 import com.carespoon.friendList.dto.FriendListSaveDto;
 import com.carespoon.user.repository.UserRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service

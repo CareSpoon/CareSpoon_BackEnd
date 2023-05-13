@@ -2,11 +2,9 @@ package com.carespoon.oneMeal.controller;
 
 import com.carespoon.oneMeal.dto.*;
 import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
-import com.carespoon.oneMeal.service.GcsService;
 import com.carespoon.user.domain.User;
 import com.carespoon.oneMeal.service.OneMealService;
 import com.carespoon.user.service.UserService;
-import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,11 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.YearMonth;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController

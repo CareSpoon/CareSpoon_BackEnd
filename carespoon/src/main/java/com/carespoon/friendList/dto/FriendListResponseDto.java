@@ -2,7 +2,6 @@ package com.carespoon.friendList.dto;
 
 import com.carespoon.friendList.domain.FriendList;
 
-import java.util.UUID;
 
 public class FriendListResponseDto {
     private Long id;
