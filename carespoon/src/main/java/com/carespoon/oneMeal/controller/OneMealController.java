@@ -28,13 +28,13 @@ public class OneMealController {
 
     private final UserService userService;
 
-    @PostMapping("/onemeal")
-    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestParam String userId, @RequestParam List<String> menuNames, @RequestBody MultipartFile image) throws IOException, ParseException {
-        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.save(userId, menuNames, image));
-        return ResponseEntity.ok(oneMeal);
-    }
+//    @PostMapping("/onemeal")
+//    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestParam String userId, @RequestParam List<String> menuNames, @RequestBody MultipartFile image) throws IOException, ParseException {
+//        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.save(userId, menuNames, image));
+//        return ResponseEntity.ok(oneMeal);
+//    }
 
-    @PostMapping("/onemealTest")
+    @PostMapping("/onemeal")
     public ResponseEntity<OneMealResponseDto> saveTest(@RequestParam String userId, @RequestParam MultipartFile image) throws IOException{
         OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image));
         return ResponseEntity.ok(oneMeal);
