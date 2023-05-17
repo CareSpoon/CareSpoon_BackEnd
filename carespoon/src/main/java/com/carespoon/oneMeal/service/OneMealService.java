@@ -78,7 +78,7 @@ public class OneMealService {
 //        return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
 //    }
 
-    public OneMeal saveTest(String userId, MultipartFile image) throws IOException {
+    public OneMeal saveTest(String userId, MultipartFile image , String tag) throws IOException {
         WebClient webClient = WebClient.builder().baseUrl("http://43.128.112.3:8000").build();
 
 //        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
@@ -123,10 +123,11 @@ public class OneMealService {
         String eatDate = dateFormat.format(dateOfString).toString();
         DateFormat formatMonth = new SimpleDateFormat("yyyy-MM");
         String eatMonth = formatMonth.format(dateOfString).toString();
-
+        DateFormat formatTime = new SimpleDateFormat("HH:mm");
+        String eatTime = formatTime.format(dateOfString).toString();
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
-        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, eatDate, eatMonth, user);
+        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, eatDate, eatMonth, eatTime, tag, user);
 
         // OneMeal 객체 저장
         return oneMealRepository.save(oneMealSaveRequestDto.toEntity());

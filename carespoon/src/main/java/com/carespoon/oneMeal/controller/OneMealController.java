@@ -35,8 +35,8 @@ public class OneMealController {
 //    }
 
     @PostMapping("/onemeal")
-    public ResponseEntity<OneMealResponseDto> saveTest(@RequestParam String userId, @RequestParam MultipartFile image) throws IOException{
-        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image));
+    public ResponseEntity<OneMealResponseDto> saveTest(@RequestParam String userId, @RequestParam MultipartFile image, @RequestParam String tag) throws IOException{
+        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image, tag));
         return ResponseEntity.ok(oneMeal);
     }
     //사진 업로드 테스트 코드

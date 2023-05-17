@@ -15,6 +15,8 @@ public class OneMealResponseDto {
 
     private String eatDate;
     private String eatMonth;
+    private String eatTime;
+    private String tag;
     private String imageUrl;
 
     public OneMealResponseDto(OneMeal entity){
@@ -23,8 +25,10 @@ public class OneMealResponseDto {
         this.meal_Fat = entity.getMeal_Fat();
         this.meal_Carbon = entity.getMeal_Carbon();
         this.meal_Protein = entity.getMeal_Protein();
+        this.eatTime = entity.getEatTime();
         this.eatDate = entity.getEatDate();
         this.eatMonth =entity.getEatMonth();
+        this.tag = entity.getTag();
         this.imageUrl = entity.getImageUrl();
     }
 

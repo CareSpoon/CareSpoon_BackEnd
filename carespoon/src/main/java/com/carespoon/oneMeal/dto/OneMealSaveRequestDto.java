@@ -19,13 +19,14 @@ public class OneMealSaveRequestDto {
 
     private String eatDate;
     private String eatMonth;
-
+    private String eatTime;
     private User user;
 
     private String imageUrl;
 
+    private String tag;
     @Builder
-    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, String imageUrl,String eatDate,String eatMonth, User user){
+    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, String imageUrl,String eatDate,String eatMonth, String eatTime,String tag, User user){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
@@ -33,6 +34,8 @@ public class OneMealSaveRequestDto {
         this.imageUrl = "https://storage.googleapis.com/carespoon-storage/"+imageUrl;
         this.eatDate = eatDate;
         this.eatMonth = eatMonth;
+        this.eatTime = eatTime;
+        this.tag = tag;
         this.user = user;
     }
 
@@ -46,6 +49,8 @@ public class OneMealSaveRequestDto {
                 .imageUrl(imageUrl)
                 .eatDate(eatDate)
                 .eatMonth(eatMonth)
+                .eatTime(eatTime)
+                .tag(tag)
                 .user(user)
                 .build();
     }

@@ -49,7 +49,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
         QOneMeal oneMeal = QOneMeal.oneMeal;
         QueryResults<MealResponseDto> mealResponse =
                 queryFactory.from(oneMeal)
-                        .select(new QMealResponseDto(oneMeal.meal_Kcal, oneMeal.meal_Carbon, oneMeal.meal_Fat, oneMeal.meal_Protein, oneMeal.imageUrl,oneMeal.eatDate))
+                        .select(new QMealResponseDto(oneMeal.meal_Kcal, oneMeal.meal_Carbon, oneMeal.meal_Fat, oneMeal.meal_Protein, oneMeal.imageUrl,oneMeal.eatDate, oneMeal.eatTime, oneMeal.tag))
                         .where(oneMeal.user.eq(user).and(oneMeal.eatDate.eq(eatDate)))
                         .fetchResults();
         List<MealResponseDto> responseDtos = mealResponse.getResults();

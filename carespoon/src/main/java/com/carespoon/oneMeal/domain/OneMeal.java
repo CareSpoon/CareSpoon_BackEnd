@@ -38,19 +38,27 @@ public class OneMeal{
     @Column
     private String eatMonth;
 
+    @Column
+    private String eatTime;
+
+    @Column
+    private String tag;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
     private String imageUrl;
     @Builder
-    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, String eatDate, String eatMonth, User user, String imageUrl) {
+    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, String eatDate, String eatMonth, String eatTime,String tag, User user, String imageUrl) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
         this.meal_Protein = meal_Protein;
         this.eatDate = eatDate;
         this.eatMonth = eatMonth;
+        this.eatTime = eatTime;
+        this.tag = tag;
         this.user = user;
         this.imageUrl = imageUrl;
     }
