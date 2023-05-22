@@ -7,12 +7,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import java.sql.Time;
+import java.util.TimeZone;
 
 @EnableJpaAuditing
 @SpringBootApplication
 public class CarespoonApplication {
 
+	@PostConstruct
+	void started(){
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(CarespoonApplication.class, args);
 	}
