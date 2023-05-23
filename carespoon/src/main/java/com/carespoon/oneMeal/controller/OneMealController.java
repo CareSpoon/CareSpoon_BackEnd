@@ -1,5 +1,8 @@
 package com.carespoon.oneMeal.controller;
 
+import com.carespoon.common.dto.ApiResponseDto;
+import com.carespoon.exception.Success;
+import com.carespoon.exception.model.NotMenuException;
 import com.carespoon.oneMeal.dto.*;
 import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
 import com.carespoon.user.domain.User;
@@ -35,9 +38,9 @@ public class OneMealController {
 //    }
 
     @PostMapping("/onemeal")
-    public ResponseEntity<OneMealResponseDto> saveTest(@RequestParam String userId, @RequestParam MultipartFile image, @RequestParam String tag) throws IOException{
+    public ApiResponseDto<OneMealResponseDto> save(@RequestParam String userId, @RequestParam MultipartFile image, @RequestParam String tag) throws IOException, NotMenuException {
         OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image, tag));
-        return ResponseEntity.ok(oneMeal);
+        return ApiResponseDto.success(Success.MENU_FIND_SUCCESS, oneMeal);
     }
     //사진 업로드 테스트 코드
 //    private final GcsService gcsService;

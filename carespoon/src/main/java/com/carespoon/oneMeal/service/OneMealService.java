@@ -1,5 +1,6 @@
 package com.carespoon.oneMeal.service;
 
+import com.carespoon.exception.model.NotMenuException;
 import com.carespoon.menu.service.MenuService;
 import com.carespoon.oneMeal.repository.OneMealRepository;
 import com.carespoon.menu.domain.Menu;
@@ -78,7 +79,7 @@ public class OneMealService {
 //        return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
 //    }
 
-    public OneMeal saveTest(String userId, MultipartFile image , String tag) throws IOException {
+    public OneMeal saveTest(String userId, MultipartFile image , String tag) throws IOException, NotMenuException {
         WebClient webClient = WebClient.builder().baseUrl("http://43.128.112.3:8000").build();
 
 //        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
