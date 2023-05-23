@@ -2,6 +2,7 @@ package com.carespoon.oneMeal.controller;
 
 import com.carespoon.common.dto.ApiResponseDto;
 import com.carespoon.exception.Success;
+import com.carespoon.exception.model.NotMealException;
 import com.carespoon.exception.model.NotMenuException;
 import com.carespoon.oneMeal.dto.*;
 import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
@@ -25,10 +26,6 @@ import java.util.List;
 public class OneMealController {
     private final OneMealService oneMealService;
 
-    @Autowired
-    @Qualifier("oneMealRepositoryImpl")
-    private OneMealRepositoryCustom oneMealRepositoryCustom;
-
     private final UserService userService;
 
 //    @PostMapping("/onemeal")
@@ -42,30 +39,25 @@ public class OneMealController {
         OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image, tag));
         return ApiResponseDto.success(Success.MENU_FIND_SUCCESS, oneMeal);
     }
-    //사진 업로드 테스트 코드
-//    private final GcsService gcsService;
-//    @PostMapping("/imagetest")
-//    public String addTest(@RequestBody MultipartFile file) throws IOException{
-//        return gcsService.uploadImage(file);
-//    }
+
     @GetMapping("/dailystatistics/{userId}/{date}")
-    public DailyMealResponseDto getDailyStatistics(@PathVariable String userId, @PathVariable String date) {
+    public DailyMealResponseDto getDailyStatistics(@PathVariable String userId, @PathVariable String date) throws NotMealException {
         User user = userService.findByUuid(userId);
-        DailyMealResponseDto dailyNutrition = oneMealRepositoryCustom.findOneMealByCreatedTime(user, date).get(0);
+        DailyMealResponseDto dailyNutrition = oneMealService.findOneMealByCreatedDate(user, date).get(0);
         return dailyNutrition;
     }
 
     @GetMapping("/monthlystatistics/{userId}/{month}")
-    public MonthlyMealResponseDto getMonthlyStatistics(@PathVariable String userId, @PathVariable String month) {
+    public MonthlyMealResponseDto getMonthlyStatistics(@PathVariable String userId, @PathVariable String month) throws NotMealException {
         User user = userService.findByUuid(userId);
-        MonthlyMealResponseDto monthlyNutrition = oneMealRepositoryCustom.findOneMealByCreatedMonth(user, month).get(0);
+        MonthlyMealResponseDto monthlyNutrition = oneMealService.findOneMealByCreatedMonth(user, month).get(0);
         return monthlyNutrition;
     }
 
     @GetMapping("/dailymeals/{userId}/{date}")
-    public List<MealResponseDto> getDaymeals(@PathVariable String userId, @PathVariable String date) {
+    public List<MealResponseDto> getDaymeals(@PathVariable String userId, @PathVariable String date) throws NotMealException{
         User user = userService.findByUuid(userId);
-        List<MealResponseDto> results = oneMealRepositoryCustom.findMealsByDate(user, date);
+        List<MealResponseDto> results = oneMealService.findMealByCreatedDate(user, date);
         return results;
     }
 

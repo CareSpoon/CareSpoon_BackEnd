@@ -1,18 +1,23 @@
 package com.carespoon.oneMeal.service;
 
+import com.carespoon.exception.ErrorStatus;
+import com.carespoon.exception.model.NotMealException;
 import com.carespoon.exception.model.NotMenuException;
 import com.carespoon.menu.service.MenuService;
+import com.carespoon.oneMeal.dto.*;
 import com.carespoon.oneMeal.repository.OneMealRepository;
 import com.carespoon.menu.domain.Menu;
 import com.carespoon.oneMeal.domain.OneMeal;
+import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
+import com.carespoon.oneMeal.repository.OneMealRepositoryImpl;
 import com.carespoon.user.domain.User;
-import com.carespoon.oneMeal.dto.OneMealResponseDto;
-import com.carespoon.oneMeal.dto.OneMealSaveRequestDto;
 
 import javax.transaction.Transactional;
 
 import com.carespoon.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
@@ -43,10 +48,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OneMealService {
     private final OneMealRepository oneMealRepository;
-
     private final UserRepository userRepository;
     private final GcsService gcsService;
     private final MenuService menuService;
+
+    @Autowired
+    @Qualifier("oneMealRepositoryImpl")
+    private OneMealRepositoryCustom oneMealRepositoryCustom;
 
 //    @Transactional
 //    public OneMeal save(String userId, List<String> menuNames, MultipartFile image) throws IOException, ParseException {
@@ -144,14 +152,27 @@ public class OneMealService {
         return result;
     }
 
-//    public List<OneMealResponseDto> findByUserandDate(String userId, String eatDate){
-//        User user = userRepository.findUserByUuid(userId);
-//        List<OneMeal> entity = oneMealRepository.findByUserandDate(user, eatDate);
-//        List<OneMealResponseDto> result = new ArrayList<OneMealResponseDto>(entity.size());
-//        for (int i = 0; i < entity.size(); i++) {
-//            result.add(new OneMealResponseDto(entity.get(i)));
-//        }
-//        return result;
-//    }
+    public List<MealResponseDto> findMealByCreatedDate(User user, String eatDate) throws NotMealException{
+        List<OneMeal> oneMeals = oneMealRepository.findOneMealByEatDate(user, eatDate).orElseThrow(() -> new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage()));
+        if(oneMeals.isEmpty()){
+            throw new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage());
+        }
+        return oneMealRepositoryCustom.findMealsByDate(user, eatDate);
+    }
 
+    public List<DailyMealResponseDto> findOneMealByCreatedDate(User user, String eatDate) throws NotMealException{
+        List<OneMeal> oneMeals = oneMealRepository.findOneMealByEatDate(user, eatDate).orElseThrow(() -> new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage()));
+        if(oneMeals.isEmpty()){
+            throw new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage());
+        }
+        return oneMealRepositoryCustom.findOneMealByCreatedTime(user, eatDate);
+    }
+
+    public List<MonthlyMealResponseDto> findOneMealByCreatedMonth(User user, String eatMonth) throws NotMealException{
+        List<OneMeal> oneMeals = oneMealRepository.findOneMealByEatMonth(user, eatMonth).orElseThrow(() -> new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage()));
+        if(oneMeals.isEmpty()){
+            throw new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage());
+        }
+        return oneMealRepositoryCustom.findOneMealByCreatedMonth(user, eatMonth);
+    }
 }

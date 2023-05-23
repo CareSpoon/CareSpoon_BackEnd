@@ -21,7 +21,7 @@ public class ApiResponseDto <T>{
         return new ApiResponseDto<>(success.getHttpStatusCode(), "요청이 성공적으로 완료되었습니다.", data);
     }
 
-    public static ApiResponseDto error(ErrorStatus error) {
-        return new ApiResponseDto<>(error.getHttpStatusCode(), "메뉴가 검색되지 않았습니다.");
+    public static ApiResponseDto error(ErrorStatus error, String message) {
+        return new ApiResponseDto<>(error.getHttpStatusCode(), message);
     }
 }

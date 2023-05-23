@@ -6,9 +6,13 @@ import com.carespoon.oneMeal.dto.*;
 import com.carespoon.user.domain.User;
 import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
+
 
 public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements OneMealRepositoryCustom {
     public OneMealRepositoryImpl(JPAQueryFactory queryFactory){
@@ -20,6 +24,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
 
     @Override
     public List<DailyMealResponseDto> findOneMealByCreatedTime(User user, String eatDate){
+
         QOneMeal oneMeal = QOneMeal.oneMeal;
         QueryResults<DailyMealResponseDto> mealResponse =
                 queryFactory.from(oneMeal)

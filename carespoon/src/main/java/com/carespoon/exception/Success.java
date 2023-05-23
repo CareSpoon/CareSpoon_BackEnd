@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum Success {
     MENU_FIND_SUCCESS(HttpStatus.ACCEPTED, "메뉴가 성공적으로 조회되었습니다."),
+    MEAL_FIND_SUCCESS(HttpStatus.ACCEPTED, "식사가 성공적으로 조회되었습니다."),
     ;
     private final HttpStatus httpStatus;
     private final String message;
