@@ -61,7 +61,7 @@ public class OneMeal{
     private String imageUrl;
 
     @OneToMany
-    @JoinColumn(name = "menu_id")
+    @JoinColumn(name = "menuId")
     private List<Menu> menus;
 
     @Builder
