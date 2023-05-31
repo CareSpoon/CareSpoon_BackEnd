@@ -18,6 +18,7 @@ import com.carespoon.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
@@ -102,7 +103,24 @@ public class OneMealService {
 //                .body(BodyInserters.fromMultipartData(builder.build()))
 //                .retrieve()
 //                .bodyToMono(List<String>.class);
+        /*
+             Flux<List<PredictResponseDto>> result = webClient.post()
+                .uri("/predict")
+                .contentType(MediaType.MULTIPART_FORM_DATA)
+                .body(BodyInserters.fromMultipartData(builder.build())).retrieve().bodyToFlux(new ParameterizedTypeReference<List<PredictResponseDto>>() {});
+
+         */
         //webClient 사용해서 결과 받아오기
+//        List<String> resultList = new ArrayList<>();
+//        List<PredictResponseDto> results = webClient.post()
+//                .uri("/predict")
+//                .contentType(MediaType.MULTIPART_FORM_DATA)
+//                .body(BodyInserters.fromMultipartData(builder.build())).retrieve().bodyToFlux(new ParameterizedTypeReference<List<PredictResponseDto>>() {})
+//                .blockLast();
+//        for(PredictResponseDto responseDto : results){
+//            resultList.add(results.getMenuNames);
+//        }
+
         Flux<String> result = webClient.post()
                 .uri("/predict")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
