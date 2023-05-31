@@ -14,12 +14,12 @@ import java.util.UUID;
 
 @Service
 public class GcsService {
-    private static final String BUCKET_NAME = "carespoon-storage";
+    private static final String BUCKET_NAME = "carespoon";
 
     private final Storage storage;
 
     private String key
-            = "/Applications/Develop/CareSpoon_BackEnd/carespoon/src/main/resources/google_storage/care-spoon-82c78-957ade423885.json";
+            = "/Applications/Develop/CareSpoon_BackEnd/carespoon/src/main/resources/google_storage/carespoon-388405-dc30d9709ba6.json";
 
     Credentials credentials = GoogleCredentials.fromStream(new FileInputStream(key));
     public GcsService() throws IOException {

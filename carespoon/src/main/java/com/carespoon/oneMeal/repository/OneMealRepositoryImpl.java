@@ -28,7 +28,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
         QOneMeal oneMeal = QOneMeal.oneMeal;
         QueryResults<DailyMealResponseDto> mealResponse =
                 queryFactory.from(oneMeal)
-                .select(new QDailyMealResponseDto(oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum(), oneMeal.eatDate))
+                .select(new QDailyMealResponseDto(oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum(), oneMeal.meal_na.sum(), oneMeal.meal_cal.sum(), oneMeal.meal_fe.sum() ,oneMeal.eatDate))
                 .groupBy(oneMeal.eatDate)
                 .where(oneMeal.user.eq(user).and(oneMeal.eatDate.eq(eatDate)))
                 .fetchResults();
@@ -41,7 +41,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
         QOneMeal oneMeal = QOneMeal.oneMeal;
         QueryResults<MonthlyMealResponseDto> mealResponse=
             queryFactory.from(oneMeal)
-                .select(new QMonthlyMealResponseDto(oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum(), oneMeal.eatMonth ))
+                .select(new QMonthlyMealResponseDto(oneMeal.meal_Kcal.sum() ,oneMeal.meal_Carbon.sum(), oneMeal.meal_Fat.sum(), oneMeal.meal_Protein.sum(),  oneMeal.meal_na.sum(), oneMeal.meal_cal.sum(), oneMeal.meal_fe.sum() ,oneMeal.eatMonth ))
                 .groupBy(oneMeal.eatMonth)
                 .where(oneMeal.user.eq(user).and(oneMeal.eatMonth.eq(month)))
                 .fetchResults();
@@ -54,7 +54,7 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
         QOneMeal oneMeal = QOneMeal.oneMeal;
         QueryResults<MealResponseDto> mealResponse =
                 queryFactory.from(oneMeal)
-                        .select(new QMealResponseDto(oneMeal.meal_Kcal, oneMeal.meal_Carbon, oneMeal.meal_Fat, oneMeal.meal_Protein, oneMeal.imageUrl,oneMeal.eatDate, oneMeal.eatTime, oneMeal.tag))
+                        .select(new QMealResponseDto(oneMeal.meal_Kcal, oneMeal.meal_Carbon, oneMeal.meal_Fat, oneMeal.meal_Protein, oneMeal.meal_na, oneMeal.meal_cal, oneMeal.meal_fe, oneMeal.menus, oneMeal.imageUrl,oneMeal.eatDate, oneMeal.eatTime, oneMeal.tag))
                         .where(oneMeal.user.eq(user).and(oneMeal.eatDate.eq(eatDate)))
                         .fetchResults();
         List<MealResponseDto> responseDtos = mealResponse.getResults();

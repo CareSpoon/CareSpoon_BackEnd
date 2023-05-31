@@ -119,11 +119,17 @@ public class OneMealService {
         double totalCarbon = 0.0;
         double totalFat = 0.0;
         double totalProtein = 0.0;
+        double totalNa = 0.0;
+        double totalCal = 0.0;
+        double totalFe = 0.0;
         for (Menu menu : menus) {
-            totalKcal += menu.getMenu_Kcal();
-            totalCarbon += menu.getMenu_Carbon();
-            totalFat += menu.getMenu_Fat();
-            totalProtein += menu.getMenu_Protein();
+            totalKcal += menu.getMenu_kcal();
+            totalCarbon += menu.getMenu_carbon();
+            totalFat += menu.getMenu_fat();
+            totalProtein += menu.getMenu_protein();
+            totalNa += menu.getMenu_na();
+            totalCal += menu.getMenu_cal();
+            totalFe += menu.getMenu_fe();
         }
 
         User user = userRepository.findUserByUuid(userId);
@@ -136,7 +142,7 @@ public class OneMealService {
         String eatTime = formatTime.format(dateOfString).toString();
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
-        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, imageUrl, eatDate, eatMonth, eatTime, tag, user);
+        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, totalNa, totalCal, totalFe, menus, imageUrl, eatDate, eatMonth, eatTime, tag, user);
 
         // OneMeal 객체 저장
         return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
