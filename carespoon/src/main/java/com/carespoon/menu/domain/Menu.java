@@ -16,23 +16,35 @@ public class Menu {
     public String menuName;
 
     @Column
-    private double menu_Kcal;
+    private double menu_kcal;
 
     @Column
-    private double menu_Carbon;
+    private double menu_carbon;
 
     @Column
-    private double menu_Fat;
+    private double menu_fat;
 
     @Column
-    private double menu_Protein;
+    private double menu_protein;
 
-    public Menu(Long id, String menuName, double menu_Kcal, double menu_Carbon, double menu_Fat, double menu_Protein){
+
+    @Column
+    private double menu_na;
+
+    @Column
+    private double menu_cal;
+
+    @Column
+    private double menu_fe;
+    public Menu(Long id, String menuName, double menu_Kcal, double menu_Carbon, double menu_Fat, double menu_Protein, double menu_na, double menu_cal, double menu_fe){
         this.id = id;
         this.menuName = menuName;
-        this.menu_Kcal = menu_Kcal;
-        this.menu_Carbon = menu_Carbon;
-        this.menu_Fat = menu_Fat;
-        this.menu_Protein = menu_Protein;
+        this.menu_kcal = menu_Kcal;
+        this.menu_carbon = menu_Carbon;
+        this.menu_fat = menu_Fat;
+        this.menu_protein = menu_Protein;
+        this.menu_na = menu_na;
+        this.menu_cal = menu_cal;
+        this.menu_fe = menu_fe;
     }
 }
