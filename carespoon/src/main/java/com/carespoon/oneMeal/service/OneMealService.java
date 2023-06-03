@@ -89,7 +89,7 @@ public class OneMealService {
 //    }
 
     public OneMeal saveTest(String userId, MultipartFile image , String tag) throws IOException, NotMenuException {
-        WebClient webClient = WebClient.builder().baseUrl("http://43.128.112.3:8000").build();
+        WebClient webClient = WebClient.builder().baseUrl("http://endnjs.iptime.org:12300").build();
 
 //        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
 
@@ -131,7 +131,6 @@ public class OneMealService {
                 .map(String::trim).collectList().block();
 
         List<Menu> menus = menuService.findByMenuName(resultList);
-
         // 각 메뉴의 영양 정보를 총합
         double totalKcal = 0.0;
         double totalCarbon = 0.0;
@@ -181,7 +180,11 @@ public class OneMealService {
         if(oneMeals.isEmpty()){
             throw new NotMealException(ErrorStatus.NOT_MEAL_FIND_EXCEPTION, ErrorStatus.NOT_MEAL_FIND_EXCEPTION.getMessage());
         }
-        return oneMealRepositoryCustom.findMealsByDate(user, eatDate);
+        List<MealResponseDto> responseDtos = new ArrayList<>();
+        for(OneMeal meal : oneMeals){
+            responseDtos.add(new MealResponseDto(meal.getMeal_Kcal(), meal.getMeal_Carbon(), meal.getMeal_Fat(), meal.getMeal_Protein(), meal.getMeal_na(), meal.getMeal_cal(), meal.getMeal_fe(), meal.getMenus(), meal.getImageUrl(), meal.getEatDate(), meal.getEatTime(), meal.getTag()));
+        }
+        return responseDtos;
     }
 
     public List<DailyMealResponseDto> findOneMealByCreatedDate(User user, String eatDate) throws NotMealException{

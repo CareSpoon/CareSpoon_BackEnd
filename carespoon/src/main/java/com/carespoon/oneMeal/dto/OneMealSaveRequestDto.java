@@ -59,7 +59,7 @@ public class OneMealSaveRequestDto {
                 .meal_na(meal_na)
                 .meal_cal(meal_cal)
                 .meal_fe(meal_fe)
-
+                .menus(menus)
                 .imageUrl(imageUrl)
                 .eatDate(eatDate)
                 .eatMonth(eatMonth)

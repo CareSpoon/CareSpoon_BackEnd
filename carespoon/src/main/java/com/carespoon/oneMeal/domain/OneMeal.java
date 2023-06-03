@@ -60,9 +60,8 @@ public class OneMeal{
 
     private String imageUrl;
 
-    @OneToMany
-    @JoinColumn(name = "menuId")
-    private List<Menu> menus;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Menu> menus = new ArrayList<>();
 
     @Builder
     public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, String eatDate, String eatMonth, String eatTime,String tag, User user, String imageUrl, List<Menu> menus) {

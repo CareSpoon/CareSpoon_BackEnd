@@ -49,15 +49,4 @@ public class OneMealRepositoryImpl extends QuerydslRepositorySupport implements 
         return result;
     }
 
-    @Override
-    public List<MealResponseDto> findMealsByDate(User user, String eatDate){
-        QOneMeal oneMeal = QOneMeal.oneMeal;
-        QueryResults<MealResponseDto> mealResponse =
-                queryFactory.from(oneMeal)
-                        .select(new QMealResponseDto(oneMeal.meal_Kcal, oneMeal.meal_Carbon, oneMeal.meal_Fat, oneMeal.meal_Protein, oneMeal.meal_na, oneMeal.meal_cal, oneMeal.meal_fe, oneMeal.menus, oneMeal.imageUrl,oneMeal.eatDate, oneMeal.eatTime, oneMeal.tag))
-                        .where(oneMeal.user.eq(user).and(oneMeal.eatDate.eq(eatDate)))
-                        .fetchResults();
-        List<MealResponseDto> responseDtos = mealResponse.getResults();
-        return responseDtos;
-    }
 }

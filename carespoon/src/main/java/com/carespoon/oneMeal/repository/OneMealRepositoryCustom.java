@@ -10,5 +10,4 @@ public interface OneMealRepositoryCustom {
     List<DailyMealResponseDto> findOneMealByCreatedTime(User user, String eatDate);
     List<MonthlyMealResponseDto> findOneMealByCreatedMonth(User user, String eatMonth);
 
-    List<MealResponseDto> findMealsByDate(User user, String eatDate);
 }
