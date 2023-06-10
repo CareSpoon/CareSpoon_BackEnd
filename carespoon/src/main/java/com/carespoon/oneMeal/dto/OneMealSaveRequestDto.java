@@ -22,7 +22,6 @@ public class OneMealSaveRequestDto {
     private double meal_na;
     private double meal_cal;
     private double meal_fe;
-    private List<Menu> menus;
     private String eatDate;
     private String eatMonth;
     private String eatTime;
@@ -32,7 +31,7 @@ public class OneMealSaveRequestDto {
 
     private String tag;
     @Builder
-    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, List<Menu> menus, String imageUrl,String eatDate,String eatMonth, String eatTime,String tag, User user){
+    public OneMealSaveRequestDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe,  String imageUrl,String eatDate,String eatMonth, String eatTime,String tag, User user){
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
@@ -40,7 +39,6 @@ public class OneMealSaveRequestDto {
         this.meal_na = meal_na;
         this.meal_cal = meal_cal;
         this.meal_fe = meal_fe;
-        this.menus = menus;
         this.imageUrl = "https://storage.googleapis.com/carespoon-storage/"+imageUrl;
         this.eatDate = eatDate;
         this.eatMonth = eatMonth;
@@ -59,7 +57,6 @@ public class OneMealSaveRequestDto {
                 .meal_na(meal_na)
                 .meal_cal(meal_cal)
                 .meal_fe(meal_fe)
-                .menus(menus)
                 .imageUrl(imageUrl)
                 .eatDate(eatDate)
                 .eatMonth(eatMonth)

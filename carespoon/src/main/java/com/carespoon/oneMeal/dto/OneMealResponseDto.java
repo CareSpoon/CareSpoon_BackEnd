@@ -17,7 +17,6 @@ public class OneMealResponseDto {
     private double meal_na;
     private double meal_cal;
     private double meal_fe;
-    private List<String> menus = new ArrayList<>();
     private String eatDate;
     private String eatMonth;
     private String eatTime;
@@ -32,10 +31,6 @@ public class OneMealResponseDto {
         this.meal_na = entity.getMeal_na();
         this.meal_cal = entity.getMeal_cal();
         this.meal_fe = entity.getMeal_fe();
-        List<Menu> menuFromMeal = entity.getMenus();
-        for(Menu menu : menuFromMeal){
-            menus.add(menu.getMenuName());
-        }
         this.eatTime = entity.getEatTime();
         this.eatDate = entity.getEatDate();
         this.eatMonth =entity.getEatMonth();

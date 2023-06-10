@@ -28,7 +28,7 @@ public class NotificationScheduler {
     private FirebaseMessaging instance;
     @PostConstruct
     public void firebaseSetting() throws IOException {
-        GoogleCredentials googleCredentials = GoogleCredentials.fromStream(new FileInputStream("/home/lyny_cse/care-spoon-82c78-firebase-adminsdk-c2nf0-14d8922178.json"))
+        GoogleCredentials googleCredentials = GoogleCredentials.fromStream(new FileInputStream("/Applications/Develop/CareSpoon_BackEnd/carespoon/src/main/resources/firebase/care-spoon-82c78-firebase-adminsdk-c2nf0-14d8922178.json"))
                 .createScoped((Arrays.asList(fireBaseCreateScoped)));
         FirebaseOptions secondaryAppConfig = FirebaseOptions.builder()
                 .setCredentials(googleCredentials)
@@ -36,19 +36,19 @@ public class NotificationScheduler {
         FirebaseApp app = FirebaseApp.initializeApp(secondaryAppConfig);
         this.instance = FirebaseMessaging.getInstance(app);
     }
-    @Scheduled(cron = "0 0 09 * * ?")
+    @Scheduled(cron = "0 0 18 * * ?")
     public void pushMorningDietAlarm() throws FirebaseMessagingException{
         log.info("아침 식사 알림");
         pushAlarm(MORNING_DIET);
     }
 
-    @Scheduled(cron = "0 0 13 * * ?")
+    @Scheduled(cron = "0 0 21 * * ?")
     public void pushLunchDietAlarm() throws FirebaseMessagingException{
         log.info("점심 식사 알림");
         pushAlarm(LUNCH_DIET);
     }
 
-    @Scheduled(cron = "0 0 19 * * ?")
+    @Scheduled(cron = "0 0 03 * * ?")
     public void pushDinnerDietAlarm() throws FirebaseMessagingException {
         log.info("저녁 식사 알림");
         pushAlarm(DINNER_DIET);

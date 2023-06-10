@@ -60,11 +60,9 @@ public class OneMeal{
 
     private String imageUrl;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Menu> menus = new ArrayList<>();
 
     @Builder
-    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, String eatDate, String eatMonth, String eatTime,String tag, User user, String imageUrl, List<Menu> menus) {
+    public OneMeal(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, String eatDate, String eatMonth, String eatTime,String tag, User user, String imageUrl) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Fat = meal_Fat;
         this.meal_Carbon = meal_Carbon;
@@ -78,7 +76,6 @@ public class OneMeal{
         this.tag = tag;
         this.user = user;
         this.imageUrl = imageUrl;
-        this.menus = menus;
     }
 
 }

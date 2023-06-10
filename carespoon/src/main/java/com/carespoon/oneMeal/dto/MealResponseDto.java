@@ -14,13 +14,12 @@ public class MealResponseDto {
     private double meal_na;
     private double meal_cal;
     private double meal_fe;
-    private List<String> menus;
     private String eatDate;
     private String tag;
     private String eatTime;
     private String imageUrl;
     @QueryProjection
-    public MealResponseDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, List<Menu> menuNames, String imageUrl, String eatDate, String eatTime, String tag ){
+    public MealResponseDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, String imageUrl, String eatDate, String eatTime, String tag ){
         this.meal_Kcal = meal_Kcal;
         this.meal_Carbon = meal_Carbon;
         this.meal_Fat = meal_Fat;
@@ -28,10 +27,6 @@ public class MealResponseDto {
         this.meal_na = meal_na;
         this.meal_cal = meal_cal;
         this.meal_fe = meal_fe;
-        this.menus = new ArrayList<>();
-        for(Menu menu : menuNames){
-            menus.add(menu.getMenuName());
-        }
         this.imageUrl = imageUrl;
         this.eatDate = eatDate;
         this.eatTime = eatTime;

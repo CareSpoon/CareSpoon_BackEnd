@@ -130,7 +130,6 @@ public class OneMealService {
                 .flatMap(s -> Flux.fromArray(s.replaceAll("[\\[\\]\"]", "").split(",")))
                 .map(String::trim).collectList().block();
 
-        List<Menu> menus = menuService.findByMenuName(resultList);
         // 각 메뉴의 영양 정보를 총합
         double totalKcal = 0.0;
         double totalCarbon = 0.0;
@@ -139,6 +138,7 @@ public class OneMealService {
         double totalNa = 0.0;
         double totalCal = 0.0;
         double totalFe = 0.0;
+        List<Menu> menus = menuService.findByMenuName(resultList);
         for (Menu menu : menus) {
             totalKcal += menu.getMenu_kcal();
             totalCarbon += menu.getMenu_carbon();
@@ -148,7 +148,6 @@ public class OneMealService {
             totalCal += menu.getMenu_cal();
             totalFe += menu.getMenu_fe();
         }
-
         User user = userRepository.findUserByUuid(userId);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOfString = new Date();
@@ -159,7 +158,7 @@ public class OneMealService {
         String eatTime = formatTime.format(dateOfString).toString();
         // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
-        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, totalNa, totalCal, totalFe, menus, imageUrl, eatDate, eatMonth, eatTime, tag, user);
+        OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, totalNa, totalCal, totalFe, imageUrl, eatDate, eatMonth, eatTime, tag, user);
 
         // OneMeal 객체 저장
         return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
@@ -182,7 +181,7 @@ public class OneMealService {
         }
         List<MealResponseDto> responseDtos = new ArrayList<>();
         for(OneMeal meal : oneMeals){
-            responseDtos.add(new MealResponseDto(meal.getMeal_Kcal(), meal.getMeal_Carbon(), meal.getMeal_Fat(), meal.getMeal_Protein(), meal.getMeal_na(), meal.getMeal_cal(), meal.getMeal_fe(), meal.getMenus(), meal.getImageUrl(), meal.getEatDate(), meal.getEatTime(), meal.getTag()));
+            responseDtos.add(new MealResponseDto(meal.getMeal_Kcal(), meal.getMeal_Carbon(), meal.getMeal_Fat(), meal.getMeal_Protein(), meal.getMeal_na(), meal.getMeal_cal(), meal.getMeal_fe(), meal.getImageUrl(), meal.getEatDate(), meal.getEatTime(), meal.getTag()));
         }
         return responseDtos;
     }

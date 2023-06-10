@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
-import java.sql.Time;
 import java.util.TimeZone;
 
 @EnableJpaAuditing
