@@ -39,7 +39,7 @@ public class OneMealSaveRequestDto {
         this.meal_na = meal_na;
         this.meal_cal = meal_cal;
         this.meal_fe = meal_fe;
-        this.imageUrl = "https://storage.googleapis.com/carespoon-storage/"+imageUrl;
+        this.imageUrl = "https://storage.googleapis.com/carespoon/"+imageUrl;
         this.eatDate = eatDate;
         this.eatMonth = eatMonth;
         this.eatTime = eatTime;
