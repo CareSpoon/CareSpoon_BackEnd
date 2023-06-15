@@ -5,7 +5,6 @@ import com.carespoon.exception.model.NotMealException;
 import com.carespoon.exception.model.NotMenuException;
 import com.carespoon.menu.service.MenuService;
 import com.carespoon.oneMeal.dto.*;
-import com.carespoon.oneMeal.dto.PredictResponseDto.FoodDTO;
 import com.carespoon.oneMeal.repository.OneMealRepository;
 import com.carespoon.menu.domain.Menu;
 import com.carespoon.oneMeal.domain.OneMeal;
@@ -16,7 +15,6 @@ import com.carespoon.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
@@ -24,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -32,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -55,27 +51,6 @@ public class OneMealService {
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
         builder.part("file", image.getResource());
         //webClient 사용해서 결과 받아오기
-//        List<String> resultList = new ArrayList<>();
-//        Mono<PredictResponseDto> result = webClient.post()
-//                .uri("/predict")
-//                .contentType(MediaType.MULTIPART_FORM_DATA)
-//                .body(BodyInserters.fromMultipartData(builder.build())).retrieve().bodyToMono(new ParameterizedTypeReference<>() {
-//                });
-//        PredictResponseDto results = result.block();
-//        System.out.println(results.getFoodData());
-//        Map<String, FoodDTO> foodData = results.getFoodData();
-//        List<String> resultList = new ArrayList<>(foodData.keySet());
-
-//        Flux<String> result = webClient.post().uri("/predict")
-//                .contentType(MediaType.MULTIPART_FORM_DATA)
-//                .body(BodyInserters.fromMultipartData(builder.build())).retrieve().bodyToFlux(String.class);
-//        String resultString = result.blockLast();
-//        System.out.println(resultString);
-        //List<Double> volumes = new ArrayList<>();
-        //for(Double volume : volumes){
-        // volumes.add(volume);
-        //}
-//
         Flux<String> result = webClient.post()
                 .uri("/classification_only")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
