@@ -3,14 +3,17 @@ package com.carespoon.oneMeal.service;
 import com.carespoon.exception.ErrorStatus;
 import com.carespoon.exception.model.NotMealException;
 import com.carespoon.exception.model.NotMenuException;
-import com.carespoon.menu.service.MenuService;
-import com.carespoon.oneMeal.dto.*;
-import com.carespoon.oneMeal.repository.OneMealRepository;
 import com.carespoon.menu.domain.Menu;
+import com.carespoon.menu.service.MenuService;
 import com.carespoon.oneMeal.domain.OneMeal;
+import com.carespoon.oneMeal.dto.DailyMealResponseDto;
+import com.carespoon.oneMeal.dto.MealResponseDto;
+import com.carespoon.oneMeal.dto.MonthlyMealResponseDto;
+import com.carespoon.oneMeal.dto.OneMealResponseDto;
+import com.carespoon.oneMeal.dto.OneMealSaveRequestDto;
+import com.carespoon.oneMeal.repository.OneMealRepository;
 import com.carespoon.oneMeal.repository.OneMealRepositoryCustom;
 import com.carespoon.user.domain.User;
-
 import com.carespoon.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +62,7 @@ public class OneMealService {
         List<String> resultList = result
                 .flatMap(s -> Flux.fromArray(s.replaceAll("[\\[\\]\"]", "").split(",")))
                 .map(String::trim).collectList().block();
-//
-//         각 메뉴의 영양 정보를 총합
+        // 각 메뉴의 영양 정보를 총합
         double totalKcal = 0.0;
         double totalCarbon = 0.0;
         double totalFat = 0.0;

@@ -28,15 +28,11 @@ public class OneMealController {
 
     private final UserService userService;
 
-//    @PostMapping("/onemeal")
-//    public ResponseEntity<OneMealResponseDto> addOneMeal(@RequestParam String userId, @RequestParam List<String> menuNames, @RequestBody MultipartFile image) throws IOException, ParseException {
-//        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.save(userId, menuNames, image));
-//        return ResponseEntity.ok(oneMeal);
-//    }
 
     @PostMapping("/onemeal")
     public ApiResponseDto<OneMealResponseDto> save(@RequestParam String userId, @RequestParam MultipartFile image, @RequestParam String tag) throws IOException, NotMenuException {
-        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId,image, tag));
+        OneMealResponseDto oneMeal = new OneMealResponseDto(oneMealService.saveTest(userId, image, tag));
+
         return ApiResponseDto.success(Success.MENU_FIND_SUCCESS, oneMeal);
     }
 
@@ -55,7 +51,7 @@ public class OneMealController {
     }
 
     @GetMapping("/dailymeals/{userId}/{date}")
-    public List<MealResponseDto> getDaymeals(@PathVariable String userId, @PathVariable String date) throws NotMealException{
+    public List<MealResponseDto> getDaymeals(@PathVariable String userId, @PathVariable String date) throws NotMealException {
         User user = userService.findByUuid(userId);
         List<MealResponseDto> results = oneMealService.findMealByCreatedDate(user, date);
         return results;
