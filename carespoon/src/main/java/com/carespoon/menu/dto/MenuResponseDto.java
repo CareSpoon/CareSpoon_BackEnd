@@ -18,7 +18,13 @@ public class MenuResponseDto {
 
     private int menu_Protein;
 
-    public MenuResponseDto(Long id, String menuName, int menu_Kcal, int menu_Protein, int menu_Carbon, int menu_Fat){
+    public MenuResponseDto(Long id,
+                           String menuName,
+                           int menu_Kcal,
+                           int menu_Protein,
+                           int menu_Carbon,
+                           int menu_Fat
+                          ) {
         this.id = id;
         this.menuName = menuName;
         this.menu_Carbon = menu_Carbon;

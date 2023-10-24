@@ -15,7 +15,15 @@ public class DailyMealResponseDto {
     private String eatDate;
 
     @QueryProjection
-    public DailyMealResponseDto(double meal_Kcal, double meal_Carbon, double meal_Fat, double meal_Protein, double meal_na, double meal_cal, double meal_fe, String eatDate ){
+    public DailyMealResponseDto(double meal_Kcal,
+                                double meal_Carbon,
+                                double meal_Fat,
+                                double meal_Protein,
+                                double meal_na,
+                                double meal_cal,
+                                double meal_fe,
+                                String eatDate 
+                               ) {
         this.meal_Kcal = meal_Kcal;
         this.meal_Carbon = meal_Carbon;
         this.meal_Fat = meal_Fat;

@@ -50,15 +50,12 @@ public class OneMealService {
     public OneMeal saveTest(String userId, MultipartFile image, String tag) throws IOException, NotMenuException {
         WebClient webClient = WebClient.builder().baseUrl("http://endnjs.iptime.org:12300").build();
 
-        //사진 형태 변환
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
         builder.part("file", image.getResource());
-        //webClient 사용해서 결과 받아오기
         Flux<String> result = webClient.post()
                 .uri("/classification_only")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
                 .body(BodyInserters.fromMultipartData(builder.build())).retrieve().bodyToFlux(String.class);
-        //result를 List로 변환하기
         List<String> resultList = result
                 .flatMap(s -> Flux.fromArray(s.replaceAll("[\\[\\]\"]", "").split(",")))
                 .map(String::trim).collectList().block();
@@ -88,11 +85,9 @@ public class OneMealService {
         String eatMonth = formatMonth.format(dateOfString).toString();
         DateFormat formatTime = new SimpleDateFormat("HH:mm");
         String eatTime = formatTime.format(dateOfString).toString();
-        // GCS에 이미지 업로드
         String imageUrl = gcsService.uploadImage(image);
         OneMealSaveRequestDto oneMealSaveRequestDto = new OneMealSaveRequestDto(totalKcal, totalCarbon, totalFat, totalProtein, totalNa, totalCal, totalFe, imageUrl, eatDate, eatMonth, eatTime, tag, user);
 
-        // OneMeal 객체 저장
         return oneMealRepository.save(oneMealSaveRequestDto.toEntity());
     }
 
